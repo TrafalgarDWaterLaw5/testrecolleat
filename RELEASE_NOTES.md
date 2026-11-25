@@ -1,3 +1,16 @@
+# Build 4.45
+
+- Dedicated Friends, Account Settings, Privacy & Safety and administrator-only Founder Dashboard views.
+- Visible invitation code, friend action menus, password recovery and optional persistent sign-in.
+- No database migration. Journal and photographs remain local. Test recovery email, token refresh, account actions and access controls on the deployed site before beta.
+
+# Build 4.4 — dedicated Account & Friends
+
+- Friends main navigation; Places and Dishes paired in More.
+- Profile shortcut to dedicated account view.
+- Separate accepted friends, following and requests. Following preferences are local to this device and only accepted friends can be followed; no feed or sharing yet.
+- Existing Supabase configuration and schema retained. No migration or restaurant cloud storage.
+
 # Build 3.5 — 25 November 2026
 
 Permanent home metrics, one home add action, service contrast, centered Collection metrics, wider calendar month selector, privacy wording, and separate median price with minimum spread for Palate Code. Price spread threshold is a product heuristic, not a significance test. Database unchanged. Future accounts: personalise greeting using authenticated display name; not implemented yet.

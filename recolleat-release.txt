@@ -1,3 +1,3 @@
-Recolleat mobile | Build 4.3
+Recolleat mobile | Build 4.45
 25 November 2026
 Optional account and friends foundation; journal database unchanged. Backend setup required. No restaurant sharing, photo uploads or cloud journal sync.
