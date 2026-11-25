@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/>
+<title>Recolleat · Your Food Journal</title>
+<meta name="recolleat-build" content="4.3"/>
+<script>try{if(localStorage.getItem("recolleat-opened-v43"))document.documentElement.classList.add("recolleat-returning")}catch(e){}</script>
+<script>/* Use extra bottom clearance only when the hosting platform inserts its own banner. */
+if (location.hostname === 'tiiny.site' || location.hostname.endsWith('.tiiny.site')) {
+  document.documentElement.classList.add('recolleat-on-tiiny');
+}
+</script>
+<script>
+/* Optional typography is OFF until the visitor explicitly enables Google Fonts. */
+try {
+ if (localStorage.getItem('recolleat-google-fonts-opt-in-v2') === 'yes') {
+  const link=document.createElement('link');
+  link.rel='stylesheet';
+  link.href='https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..900&display=swap';
+  document.head.appendChild(link);
+ }
+} catch (error) { /* Journal remains available with local system fonts. */ }
+</script>
+<link rel="stylesheet" href="./recolleat-v4-3.css"/>
+<link href="./manifest.webmanifest?v=4.3" rel="manifest"/><link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png"/><meta name="apple-mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="default"/><meta name="apple-mobile-web-app-title" content="Recolleat"/><meta content="#0b5b37" name="theme-color"/>
+</head>
+<body>
+<div id="recolleatSplash" class="recolleat-splash" role="status" aria-live="polite" aria-label="Opening Recolleat">
+  <div class="splash-sky" aria-hidden="true"><span class="sky-beam"></span><span class="cloud cloud-left"></span><span class="cloud cloud-right"></span><span class="cloud cloud-back"></span><span class="cloud cloud-foreground"></span><span class="cloud cloud-high"></span></div>
+  <div class="splash-center" aria-hidden="true"><div class="splash-thought"><span class="thought-dot first"></span><span class="thought-dot second"></span><svg viewBox="0 0 112 112" class="thought-utensils" aria-hidden="true"><path d="M42 25v29m-8-29v29m16-29v29m-16 0c0 8 16 8 16 0m-8 0v31M69 25v62m0-62c12 13 14 31 0 31" stroke="currentColor" stroke-width="7" fill="none" stroke-linecap="round"/></svg></div></div>
+  <div class="splash-brand" aria-hidden="true"><span class="splash-brand-mark"><svg viewBox="0 0 48 48"><path d="M24 5.5c-10.7 0-18.5 7.9-18.5 18.4 0 5.7 2.7 10.5 6.9 13.9L11 44l8.3-4.1c1.5.4 3 .6 4.7.6 10.6 0 18.5-7.7 18.5-17.9 0-10-7.9-17.1-18.5-17.1Z" fill="none" stroke="currentColor" stroke-width="2.6"/><path d="M20 14v10.2m-3.2-10.2v10.2m6.4-10.2v10.2m-6.4 0c0 3.1 6.4 3.1 6.4 0m-3.2 0V34m7-20v20m0-20c5.4 5 6 10.8 0 11.4" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" fill="none"/></svg></span><strong>Recolleat</strong></div>
+  <button id="splashSkip" type="button" class="splash-skip">Skip intro</button>
+</div>
+<a class="recolleat-skip-link" href="#mainJournalContent">Skip to journal content</a>
+<div class="app">
+<aside aria-label="Recolleat navigation" class="app-sidebar" id="appSidebar">
+<div class="sidebar-top">
+<span class="sidebar-brand" title="Recolleat">R<span>.</span></span>
+<span class="sidebar-brand-name">RECOLLEAT</span>
+<button aria-label="Collapse sidebar" class="sidebar-toggle" id="sidebarToggle" title="Collapse sidebar" type="button">‹</button>
+</div>
+<div class="sidebar-section-heading">INDEX / EXPLORE</div>
+<nav aria-label="Main sections" class="sidebar-nav">
+<button class="active" data-view="home" title="Home" type="button"><span aria-hidden="true" class="sidebar-icon">⌂</span><span class="sidebar-text">Home</span></button>
+<button data-view="table" title="Collection" type="button"><span aria-hidden="true" class="sidebar-icon"><svg viewbox="0 0 24 24"><rect height="16" rx="2" width="18" x="3" y="4"></rect><path d="M3 10h18M9 10v10M15 10v10"></path></svg></span><span class="sidebar-text">Collection</span></button>
+<button data-view="cards" title="Cards" type="button"><span aria-hidden="true" class="sidebar-icon"><svg viewbox="0 0 24 24"><rect height="7" rx="1.5" width="7" x="3" y="3"></rect><rect height="7" rx="1.5" width="7" x="14" y="3"></rect><rect height="7" rx="1.5" width="7" x="3" y="14"></rect><rect height="7" rx="1.5" width="7" x="14" y="14"></rect></svg></span><span class="sidebar-text">Gallery</span></button>
+<button data-view="map" title="Map" type="button"><span aria-hidden="true" class="sidebar-icon"><svg viewbox="0 0 24 24"><path d="M9 18l-6 3V6l6-3m0 15 6 3m-6-3V3m6 18 6-3V3l-6 3m0 15V6"></path></svg></span><span class="sidebar-text">Places</span></button>
+<button data-view="cuisines" title="Cuisine" type="button"><span aria-hidden="true" class="sidebar-icon"><svg viewbox="0 0 24 24"><path d="m12 3 8 9-8 9-8-9 8-9Z"></path><path d="M12 7v10M7 12h10"></path></svg></span><span class="sidebar-text">Cuisine Rankings</span></button>
+<button data-view="settings" title="Settings" type="button"><span aria-hidden="true" class="sidebar-icon"><svg viewbox="0 0 24 24"><path d="M12 3v18M5 7h14M6 7l-4 8h8L6 7Zm12 0-4 8h8l-4-8ZM8 21h8"></path></svg></span><span class="sidebar-text">Settings</span></button>
+
+<button data-view="dishes" title="Dishes" type="button"><span aria-hidden="true" class="sidebar-icon"><svg viewbox="0 0 24 24"><path d="M5 3c14 0 14 18 0 18M19 3C5 3 5 21 19 21M8 6h8M8 18h8M6 12h12"></path></svg></span><span class="sidebar-text">Dishes</span></button>
+<button data-view="lists" title="Lists" type="button"><span aria-hidden="true" class="sidebar-icon"><svg viewbox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13"></path><path d="M3 6h.01M3 12h.01M3 18h.01"></path></svg></span><span class="sidebar-text">My Lists</span></button>
+<button data-view="visits" title="Visit history" type="button"><span aria-hidden="true" class="sidebar-icon"><svg viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l4 2"></path></svg></span><span class="sidebar-text">Visit Timeline</span></button>
+<button data-view="profile" title="Profile" type="button"><span aria-hidden="true" class="sidebar-icon"><svg viewbox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M4.5 21v-2.3c0-3.2 3-5.7 7.5-5.7s7.5 2.5 7.5 5.7V21"></path></svg></span><span class="sidebar-text">My Profile</span></button>
+</nav>
+<div class="sidebar-bottom"><span class="sidebar-bottom-mark">✦</span><span class="sidebar-text">A living record of good taste.</span></div>
+</aside>
+<div class="sidebar-scrim" id="sidebarScrim"></div>
+<div class="workspace"><div id="storageCritical" class="v42-storage-warning" role="alert" hidden><strong>Journal storage unavailable.</strong> Nothing you add can be saved in this browser right now. Check site storage permissions or use the original site address. Do not import a backup here.</div>
+<div class="mobile-top-stack">
+<header>
+<div class="header-brand"><button aria-label="Go to Home" id="mobileSidebarBtn" title="Go to Grand List" type="button">⌂</button><span class="recolleat-mark" aria-hidden="true"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M24 5.5c-10.7 0-18.5 7.9-18.5 18.4 0 5.7 2.7 10.5 6.9 13.9L11 44l8.3-4.1c1.5.4 3 .6 4.7.6 10.6 0 18.5-7.7 18.5-17.9 0-10-7.9-17.1-18.5-17.1Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><circle cx="24" cy="23" r="14" fill="none" stroke="currentColor" stroke-width="1.15" opacity=".65"/><path d="M20 14v10.2m-3.2-10.2v10.2m6.4-10.2v10.2m-6.4 0c0 3.1 6.4 3.1 6.4 0m-3.2 0V34m7-20v20m0-20c5.4 5 6 10.8 0 11.4" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" fill="none"/></svg></span><div><div class="workspace-eyebrow">YOUR PERSONAL FOOD ARCHIVE</div><h1>Recolleat<span class="brand-dot">.</span></h1><p>Every great meal deserves to be remembered.</p></div></div>
+<div class="header-actions">
+<button aria-label="Open My Profile" class="header-profile-trigger" data-view="profile" title="Open My Profile" type="button"><span class="header-avatar" id="headerProfileAvatar">R</span><span id="headerProfileName">My profile</span></button>
+<span class="local-pill">Private &amp; local</span>
+<button id="exportBtn" title="Save a copy of your data">↥  Export</button>
+<button id="importBtn" title="Restore a saved data file">↧  Import</button>
+<input accept=".json,application/json" hidden="" id="importFile" type="file"/>
+<div class="menu-wrap appearance-wrap" id="appearanceWrap">
+<button aria-controls="appearanceMenu" aria-expanded="false" id="appearanceBtn" type="button"><span class="reco-theme-button-icon" aria-hidden="true">◈</span><span class="reco-theme-button-copy"><strong>Colour themes</strong><small>Personalise your journal · unlock as you collect</small></span><span class="reco-theme-chevron" aria-hidden="true">⌄</span></button>
+<div class="popover appearance-menu" id="appearanceMenu">
+<div class="appearance-heading"><div><strong>Your colour collection</strong><p>New looks earned through your restaurant journal.</p></div><button class="mode-toggle" id="modeToggle" type="button">☾ Dark</button></div>
+<div class="reco-theme-progress" aria-label="Colour unlock progress">
+  <div class="reco-theme-progress-line"><span>RESTAURANT MILESTONES</span><strong id="themeUnlockCount">0 / 10</strong></div>
+  <div class="reco-theme-progress-track" role="progressbar" aria-label="Progress towards next colour theme" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0" id="themeUnlockMeter"><div id="themeUnlockFill"></div></div>
+  <p id="themeUnlockMessage">Log 10 restaurants to unlock Plum &amp; Champagne.</p>
+  <div class="reco-theme-milestones" aria-label="Theme milestones"><span>10</span><span>20</span><span>30</span><span>40</span></div>
+  <small>Recolleat Classic and Black &amp; White are always free to use. Other colours unlock at 10, 20, 30 and 40 saved restaurants. Visits and unfinished drafts do not count. Once earned, colour themes stay unlocked even if you later remove restaurants. Imports count and unfinished drafts do not.</small>
+</div>
+<div class="reco-theme-selection-title">CHOOSE YOUR PALETTE <span id="themeUnlockedTotal">2 of 6 available</span></div>
+<div class="appearance-swatches" id="appearanceSwatches">
+<button class="palette-option" data-palette="mint" data-required="0" type="button"><span class="swatch-colours"><i style="background:#063b28"></i><i style="background:#ffffff"></i><i style="background:#a6efb6"></i></span><span>Recolleat Classic</span></button>
+<button class="palette-option" data-palette="original" data-required="0" type="button"><span class="swatch-colours"><i style="background:#111113"></i><i style="background:#ffffff"></i><i style="background:#666666"></i></span><span>Black &amp; White</span></button>
+<button class="palette-option" data-palette="royal" data-required="10" type="button"><span class="swatch-colours"><i style="background:#140b28"></i><i style="background:#d6b25e"></i><i style="background:#eee4d8"></i></span><span>Plum &amp; Champagne</span></button>
+<button class="palette-option" data-palette="citrus" data-required="20" type="button"><span class="swatch-colours"><i style="background:#2636e7"></i><i style="background:#d8fa6a"></i><i style="background:#ff89d6"></i></span><span>Electric Citrus</span></button>
+<button class="palette-option" data-palette="crimson" data-required="30" type="button"><span class="swatch-colours"><i style="background:#290d17"></i><i style="background:#be3a50"></i><i style="background:#ffdfcf"></i></span><span>Crimson Red</span></button>
+<button class="palette-option" data-palette="golden" data-required="40" type="button"><span class="swatch-colours"><i style="background:#291e10"></i><i style="background:#c89a45"></i><i style="background:#fff3cd"></i></span><span>Golden Hour</span></button>
+</div>
+</div>
+</div>
+<button class="quick-top-btn" id="quickAddBtn" type="button" hidden aria-hidden="true" tabindex="-1">Quick Add</button><button class="primary" id="addBtn" type="button" aria-label="Add a restaurant and log your visit"><svg class="reco34-add-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M12 4V20M4 12H20"/></svg></button>
+</div>
+</header>
+
+</div>
+<nav aria-label="Main navigation" class="mobile-bottom-nav" id="mobileBottomNav"><button aria-label="Home" class="active" data-mobile-view="home" type="button"><svg aria-hidden="true" class="m-nav-svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.85" viewbox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"></path></svg><span class="m-nav-label">Home</span></button><button aria-label="Places" data-mobile-view="map" type="button"><svg aria-hidden="true" class="m-nav-svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.85" viewbox="0 0 24 24"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"></path><circle cx="12" cy="10" r="2.5"></circle></svg><span class="m-nav-label">Places</span></button><button aria-label="Collection" data-mobile-view="table" type="button"><svg aria-hidden="true" class="m-nav-svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.85" viewbox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M7 9h10M7 13h10M7 17h6"></path></svg><span class="m-nav-label">Collection</span></button><button aria-label="Calendar" data-mobile-view="visits" type="button"><svg aria-hidden="true" class="m-nav-svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.85" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18M8 14h3M8 17h4"/></svg><span class="m-nav-label">Calendar</span></button><button aria-label="More" id="mobileMoreBtn" type="button" aria-expanded="false" aria-controls="mobileMoreSheet"><svg aria-hidden="true" class="m-nav-svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.85" viewbox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"></path></svg><span class="m-nav-label">More</span></button></nav>
+
+<section class="mobile-intro" id="mobileIntro"><div><span class="mobile-eyebrow">YOUR PERSONAL FOOD JOURNAL</span><h2 id="mobileSectionTitle">The Collection</h2><p id="mobileSectionSubtitle">Your restaurants, ranked your way.</p></div><div style="display:flex;align-items:flex-end;flex-direction:column;gap:5px"><span class="mobile-collection-badge" id="mobileCurrentCount">0 saved</span></div></section>
+
+<section class="reco-pulse" id="recoPulse" aria-label="Your journal at a glance" hidden>
+  <div class="reco-pulse-head">
+    <div><span class="reco-pulse-kicker">YOUR FOOD JOURNAL</span>
+      <h3 id="recoPulseHeadline">Your food journal</h3>
+      <p id="recoPulseIntro">Log a meal, explore your journal or scan a receipt.</p>
+    </div>
+    <div class="reco-pulse-actions"><button type="button" class="primary" id="recoPulseLog">+ Add restaurant</button><button type="button" id="recoReceiptOpen" class="reco-receipt-trigger">Scan receipt</button><button id="freshHomeDiscover" type="button">Find restaurants <span aria-hidden="true">↗</span></button></div>
+  </div>
+  <section class="reco-hub-glance" aria-labelledby="recoGlanceTitle"><h3 id="recoGlanceTitle">At a glance</h3><div class="profile-stats-grid" id="profileStats"></div></section>
+  <div id="recoJourney" class="reco-journey" aria-live="polite"></div>
+  <details class="reco-home-memories"><summary>Meals worth remembering <span>See your memories</span></summary><div id="recoMemoryFeed" class="reco-memory-feed" aria-label="Your food memories"></div></details>
+  <details class="reco-year-wrap" id="recoYearWrap"><summary>My year in food</summary><div class="reco-year-wrap-body"><label>Year <select id="recoYearSelect" aria-label="Yearly Wrapped year"></select></label><div id="recoYearContent" aria-live="polite"></div></div></details>
+  <div class="reco-pulse-bottom"><details class="reco-pulse-feature" id="recoPulseFeature"></details><div class="reco-pulse-recent"><span>LOG AGAIN · LAST 20 DAYS</span><div id="recoPulseRecent"></div></div></div>
+  <div class="reco-theme-home" id="recoThemeHome" aria-label="Next colour unlock goal"><div class="reco-theme-home-head"><div><span class="reco-theme-home-kicker">YOUR NEXT COLOUR</span><strong id="recoThemeHomeTitle">Plum &amp; Champagne</strong><small id="recoThemeHomeDescription">Log 10 restaurants to unlock a new look.</small></div><button type="button" id="recoThemeHomeOpen">Explore themes</button></div><div class="reco-theme-home-track"><div id="recoThemeHomeFill"></div></div></div>
+  <div class="reco-pulse-backup" id="recoPulseBackup" hidden><span id="recoPulseBackupText"></span><button type="button" id="recoPulseExport">Export backup</button></div>
+</section>
+<section class="stats">
+<div class="stat"><span>Restaurants</span><strong id="statCount">0</strong></div>
+<div class="stat"><span>Average food score</span><strong id="statAvg">—</strong></div>
+<div class="stat"><span id="statCuisineLabel">Top cuisine</span><strong id="statCuisine">—</strong><small id="statCuisineSub" hidden></small></div>
+<div class="stat"><span>Average price per person</span><strong id="statSpend">—</strong></div>
+</section>
+<section class="controls"><div class="search-wrap"><input aria-label="Search your restaurant collection" class="search" id="search" type="search" enterkeyhint="search" autocomplete="off" placeholder="Find restaurants, dishes or visit notes…"/><button id="v41ClearSearch" type="button" aria-label="Clear search" hidden>×</button></div><div class="grand-list-tools" id="grandListTools"><span class="list-tools-caption">GRAND LIST CONTROLS</span> <div class="menu-wrap">
+<button id="filterBtn" title="Filter"><span aria-hidden="true" class="sidebar-icon"><svg viewbox="0 0 24 24"><path d="M4 5h16M7 12h10M10 19h4"></path></svg></span><span class="sidebar-text">Filter <span id="filterCount"></span></span></button>
+<div class="popover" id="filterMenu">
+<div class="popover-title">Filters</div>
+<label>Location<select id="filterLocation"><option value="">All locations</option></select></label>
+<label>Cuisine<select id="filterCuisine"><option value="">All cuisines</option></select></label>
+<label>Group vibe<select id="filterVibe">
+<option value="">Any vibe</option><option>Solo</option><option>Date</option><option>Friends</option><option>Party</option><option>Family</option>
+</select></label>
+<label>Region<select id="filterRegion">
+<option value="">All places</option>
+<option value="uk">United Kingdom only</option>
+<option value="international">International only</option>
+</select></label>
+<label>Service<select id="filterService">
+<option value="">Any service</option><option>Horror</option><option>Sloppy</option><option>Average</option><option>Respectable</option><option>Lovely</option>
+</select></label>
+<div class="pair">
+<label>Minimum rating<input id="filterMinScore" max="100" min="0" placeholder="0" type="number"/></label>
+<label>Minimum value<input id="filterMinValue" max="100" min="0" placeholder="0" step="1" type="number"/></label>
+</div>
+<label>Maximum £ / person<input id="filterMaxSpend" max="75" min="0" placeholder="75" type="number"/></label>
+<div class="popover-actions"><button id="clearFilters">Clear</button><button class="primary" id="applyFilters">Apply</button></div>
+</div>
+</div>
+<div class="menu-wrap">
+<button id="sortBtn" title="Sort"><span aria-hidden="true" class="sidebar-icon"><svg viewbox="0 0 24 24"><path d="M7 4v16m0-16-3 3m3-3 3 3M17 20V4m0 16 3-3m-3 3-3-3"></path></svg></span><span class="sidebar-text">Sort</span></button>
+<div class="popover" id="sortMenu">
+<div class="popover-title">Sort</div>
+<label>Property<select id="sortProperty">
+<option value="grandRank">Overall rank</option><option value="overallScore">Overall score</option><option value="updatedAt">Last updated</option><option value="lastVisited">Last visited</option><option value="visitCount">Number of visits</option><option value="foodScore">Food rating</option>
+<option value="valueScore">Value for money</option><option value="restaurant">Restaurant</option><option value="pp">Price / person</option>
+<option value="location">Location</option>
+<option value="cuisine">Cuisine</option><option value="service">Service</option>
+</select></label>
+<label>Direction<select id="sortDirection"><option value="asc">Ascending</option><option value="desc">Descending</option></select></label>
+<button class="primary" id="applySort" style="width:100%;margin-top:10px">Apply sort</button>
+</div>
+</div>
+<div aria-label="Grand List display" class="grand-list-view-switch" role="group">
+<button data-view="table" id="listTableTab" title="Show restaurant table" type="button"><span aria-hidden="true" class="sidebar-icon"><svg viewbox="0 0 24 24"><rect height="16" rx="2" width="18" x="3" y="4"></rect><path d="M3 10h18M9 10v10M15 10v10"></path></svg></span>Table</button>
+<button hidden aria-hidden="true" tabindex="-1" data-view="graph" id="listGraphTab" title="Show Patterns &amp; Trends graph" type="button"><span aria-hidden="true" class="sidebar-icon"><svg viewbox="0 0 24 24"><path d="M4 20V5M4 20h17M7 15l5-6 4 3 5-8"></path></svg></span>Graph</button>
+</div>
+</div></section><div class="mobile-quick-controls" id="mobileControlMount"></div>
+<div class="chips" id="chips"></div><div class="reco-search-result-status" id="recoSearchResultStatus" role="status" aria-live="polite" hidden></div>
+<main id="mainJournalContent" tabindex="-1"><section aria-label="Restaurant feed" id="mobileHome"><div class="mobile-list-header"><h3>Grand list</h3><span id="mobileResultCount">0 restaurants</span></div>
+<section id="v41Welcome" class="v41-onboarding" aria-labelledby="v41WelcomeTitle" hidden>
+  <span class="v41-eyebrow">START YOUR COLLECTION</span>
+  <h3 id="v41WelcomeTitle">Your next great meal belongs here.</h3>
+  <p>Add a restaurant in seconds, or record a full review with dishes and visits. Your journal is private on this device.</p>
+  <div class="v41-onboarding-actions"><button type="button" id="v41StartQuick" class="v41-main-cta">Quick Add</button><button type="button" id="v41StartFull">Full review</button></div>
+</section>
+<div class="v41-nextstep" id="v41NextStep" hidden aria-live="polite"><div><span class="v41-eyebrow">PICK UP WHERE YOU LEFT OFF</span><b id="v41NextTitle"></b><p id="v41NextCopy"></p></div><button type="button" id="v41NextAction">Continue</button></div>
+<div class="jump-recents"><form id="rankJumpForm" class="rank-jump" aria-label="Jump to rank"><label for="rankJumpNumber">Jump to rank</label><input id="rankJumpNumber" type="number" min="1" inputmode="numeric" placeholder="e.g. 65"/><button type="submit">Go</button></form><div class="recent-places"><span>Recently opened</span><div id="recentRestaurantChips" class="recent-chips"></div></div></div>
+<section class="drafts-panel" id="draftsPanel" aria-label="Unfinished restaurant drafts" hidden><div class="drafts-head"><strong>Saved drafts</strong><span id="draftsCount"></span></div><div id="draftCards"></div></section><div id="mobileRestaurantFeed" style="display:grid;gap:11px"></div><button id="mobileShowMoreRestaurants" class="recolleat-show-more" type="button">Show 5 more restaurants</button>
+<details class="needs-attention" id="needsAttention" hidden><summary id="attentionSummary">Collection check</summary><div id="attentionItems"></div></details></section>
+<section class="table-shell" id="tableView">
+<table>
+<thead><tr>
+<th data-sort="grandRank">Rank <i></i></th>
+<th data-sort="restaurant">Restaurant <i></i></th>
+<th data-sort="overallScore">Overall <i></i></th>
+<th data-sort="cuisine">Cuisine <i></i></th>
+<th data-sort="foodScore">Food <i></i></th>
+<th>Picture</th>
+<th data-sort="valueScore">Value <i></i></th>
+<th>Items</th>
+<th data-sort="service">Service <i></i></th>
+<th>Vibe</th>
+<th data-sort="pp">£ pp <i></i></th>
+<th data-sort="location">Location <i></i></th>
+<th>Notes</th>
+<th>Last visited</th>
+<th>Visits</th>
+<th></th>
+</tr></thead>
+<tbody id="tbody"></tbody>
+</table>
+<div class="empty" id="emptyTable"><b>No matching restaurants.</b>Change the filters or add a restaurant.</div>
+</section><button type="button" class="reco-load-more" id="recoTableMore" hidden>Show more restaurants</button>
+<section class="cards" id="cardView"></section><button type="button" class="reco-load-more" id="recoCardMore" hidden>Show more cards</button>
+<section class="map-view" id="mapView">
+<div class="bubble-shell">
+<div id="bubbleOverview">
+<section class="fresh-discover" aria-labelledby="freshDiscoverTitle"><div class="fresh-discover-head"><span class="fresh-kicker">FIND YOUR NEXT TABLE</span><h3 id="freshDiscoverTitle">Discover restaurants</h3><p>Search your journal or explore somewhere new.</p></div><label for="freshPlaceQuery" class="fresh-label">Restaurant, cuisine or location</label><div class="fresh-searchbox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><input id="freshPlaceQuery" type="search" maxlength="160" placeholder="e.g. ramen in London" autocomplete="off"/></div><div id="freshPlaceStatus" role="status" aria-live="polite" class="fresh-place-status"></div><div id="freshPlaceResults" class="fresh-place-results"></div><div class="fresh-discover-actions"><a id="freshMapsLink" href="https://www.google.com/maps/search/?api=1&amp;query=restaurants" target="_blank" rel="noopener noreferrer">Search Google Maps ↗</a><button type="button" id="freshLogPlace">Log a restaurant</button></div><small class="fresh-privacy-note">Maps opens externally with your search and normal connection information. Recolleat does not request your location or upload your journal.</small></section>
+<div class="bubble-head">
+<div>
+<h2>Locations</h2>
+<p>Your saved places, organised by location.</p>
+</div>
+</div>
+<div class="bubble-stage reco34-location-grid" id="bubbleStage"></div>
+<details class="reco-location-media" id="locationMediaManager"><summary>Manage location pictures</summary>
+  <div class="reco-location-media-heading"><div><h3>Location pictures</h3><p>Choose a cover picture. Saved on this device.</p></div></div>
+  <div class="reco-location-media-layout">
+    <div class="reco-location-media-controls">
+      <label for="locationImageLocation">Choose location</label>
+      <select id="locationImageLocation" aria-label="Location to give a picture"></select>
+      <div class="reco-location-media-actions">
+        <label class="reco-location-gallery">Choose from gallery<input id="locationImage" type="file" accept="image/*" aria-label="Choose location picture from your device"></label>
+        <button id="locationSearchImages" type="button">Search Google Images</button>
+      </div>
+      <p class="reco-location-media-note">Google Images opens with this location name. Save the picture you choose, then upload it from your gallery.</p>
+      <details class="reco-location-media-advanced" id="locationPhotoMoreOptions"><summary>More picture options</summary>
+        <p class="reco-location-media-note">If you copy an image from Google or another site, try pasting it here. Recolleat does not automatically download online images.</p>
+        <button id="locationClipboardRead" type="button">Paste copied image</button>
+        <div class="reco-location-paste-zone" id="locationPasteZone" tabindex="0" role="group" aria-label="Paste location picture">On a computer: click here and press Ctrl+V or Cmd+V.</div>
+        <button id="clearLocationImage" type="button" class="reco-location-remove">Remove location picture</button>
+      </details>
+      <p id="locationMediaStatus" class="reco-location-media-status" role="status" aria-live="polite"></p>
+    </div>
+    <div class="location-image-preview reco-location-image-preview" id="locationImagePreview" aria-label="Selected location picture preview"></div>
+  </div>
+</details>
+</div>
+<div class="location-detail" id="locationDetail">
+<div class="location-detail-head">
+<div>
+<h2 id="locationDetailTitle"></h2>
+<div class="muted" id="locationDetailSub"></div>
+</div>
+<button id="backToBubbles">← Back to locations</button>
+</div>
+<div class="location-detail-grid" id="locationDetailGrid"></div>
+</div>
+</div>
+</section>
+<section class="cuisine-view" id="cuisineView">
+<div class="cuisine-header">
+<div>
+<h2 class="cuisine-internal-heading">Cuisine Rankings</h2>
+<p>Ranked after three restaurants. Tap a cuisine to open its passport.</p>
+</div>
+<div class="reco-31-cuisine-mode" role="group" aria-label="Cuisine ranking method"><button id="cuisineModeMedian" type="button" data-cuisine-mode="median" aria-pressed="true">Median</button><button id="cuisineModeMean" type="button" data-cuisine-mode="mean" aria-pressed="false">Mean</button></div>
+</div>
+<div class="cuisine-podium" id="cuisinePodium"></div>
+<h3 class="cuisine-section-title">Qualified cuisines</h3>
+<div class="cuisine-grid" id="cuisineGrid"></div>
+<details class="reco-31-provisional"><summary>Provisional cuisines <span>1–2 restaurants · not ranked</span></summary><p class="provisional-note">Cuisines with fewer than 3 restaurants are not eligible for the podium.</p><div class="cuisine-grid" id="provisionalCuisineGrid"></div></details>
+</section>
+<section class="graph-view" id="graphView">
+<div class="graph-panel">
+<div class="graph-toolbar">
+<label class="wide">X-axis<select id="graphX">
+<option value="overallScore">Overall score</option>
+<option value="foodScore">Food score</option>
+<option value="service">Service</option>
+<option value="valueScore">Value</option>
+<option value="pp">£ pp</option>
+<option value="location">Location</option>
+<option value="cuisine">Cuisine</option>
+</select></label>
+<label class="wide">Y-axis<select id="graphY">
+<option value="foodScore">Food score</option>
+<option value="overallScore">Overall score</option>
+<option value="service">Service</option>
+<option value="valueScore">Value</option>
+<option value="pp">£ pp</option>
+<option value="location">Location</option>
+<option value="cuisine">Cuisine</option>
+</select></label>
+<label class="wide">Line of best fit<select id="graphFitMode">
+<option value="off">Disabled</option>
+<option value="normal">Normal line of best fit</option>
+<option value="filtered">Filtered line of best fit</option>
+</select></label>
+</div>
+<div class="graph-filters">
+<label>Cuisine<select id="graphFilterCuisine"><option value="">All cuisines</option></select></label>
+<label>Location<select id="graphFilterLocation"><option value="">All locations</option></select></label>
+<label>Region<select id="graphFilterRegion"><option value="">All regions</option><option value="uk">United Kingdom only</option><option value="international">International only</option></select></label>
+<label>Minimum food<input id="graphFilterMinFood" max="100" min="0" placeholder="0" type="number"/></label>
+<label>Minimum overall<input id="graphFilterMinOverall" max="100" min="0" placeholder="0" type="number"/></label>
+<div class="graph-filter-actions"><button id="clearGraphFilters" type="button">Clear graph filters</button></div>
+</div>
+<div class="graph-chip-row" id="graphFilterChips"></div>
+<div class="graph-zoom-toolbar"><span class="feature-muted">Zoom into your graph or use the mouse wheel to zoom, then drag empty space to pan.</span><div class="graph-zoom-buttons"><button aria-label="Zoom out" id="graphZoomOut" type="button">−</button><span id="graphZoomLabel">100%</span><button aria-label="Zoom in" id="graphZoomIn" type="button">+</button><button id="graphZoomReset" type="button">Reset zoom</button></div></div>
+<svg aria-label="Interactive patterns graph" id="graphSvg" viewbox="0 0 1000 560"></svg>
+<div class="graph-note" id="graphNote"></div>
+</div>
+<aside class="graph-side" id="graphDetail"><div class="muted">Click a dot on the scatter plot or a bar in the bar chart to inspect it.</div></aside>
+</section>
+<section class="lab-view" id="labView">
+<div class="feature-heading"><div><span class="feature-kicker">RECOLLEAT / PREFERENCES</span><h2>Settings</h2><p>Choose how your journal works. Advanced options stay tucked away.</p></div><span class="feature-mark">⚙</span></div><details class="reco-settings-group" open><summary>Ranking &amp; scoring <small>Across your entire journal</small></summary>
+<div class="feature-panel">
+<div class="lab-toolbar"><h3>Global scoring weights</h3><button id="labReset" type="button">Reset to 60 / 20 / 20</button></div>
+<form class="lab-weights-form" id="labWeightsForm" novalidate="">
+<div class="lab-weight-grid">
+<label>Food <span>Percentage</span><input id="labFood" inputmode="numeric" max="100" min="0" required="" step="1" type="number" value="60"/></label>
+<label>Value <span>Percentage</span><input id="labValue" inputmode="numeric" max="100" min="0" required="" step="1" type="number" value="20"/></label>
+<label>Service <span>Percentage</span><input id="labService" inputmode="numeric" max="100" min="0" required="" step="1" type="number" value="20"/></label>
+</div>
+<div class="lab-submit-bar"><p aria-live="polite" class="feature-muted" id="labTotal" role="status">60 / 20 / 20 default. Changes affect all overall rankings.</p><button class="primary" id="labSubmit" type="submit">Apply weights</button></div>
+</form>
+</div>
+</details><details class="reco-settings-group"><summary>Appearance <small>Colour themes and display</small></summary><p>Use Colour themes in More to choose a palette, light or dark mode, and available unlocks.</p><button type="button" id="settingsAppearance">Open colour themes</button></details><details class="reco-settings-group"><summary>Data &amp; backups <small>Protect your restaurant memories</small></summary><p>Back up before updates. Your journal stays on this device unless you export and share it.</p><button type="button" id="settingsExport">Export backup</button> <button type="button" id="settingsImport">Import backup</button></details><details class="reco-settings-group"><summary>Privacy &amp; legal <small>Data, fonts and notices</small></summary><p>Review photo storage, optional Google Fonts, and your legal rights.</p><button type="button" id="settingsPrivacy">Privacy &amp; Safety</button><button type="button" id="settingsTerms" hidden aria-hidden="true" tabindex="-1">Terms of Use</button></details><details class="reco-settings-group"><summary>Help &amp; about <small>Understand Recolleat</small></summary><p>Need help with logging or scoring?</p><button type="button" id="settingsHelp">Help &amp; FAQs</button><p>Local-first food journal</p></details><div class="lab-highlights" hidden>
+<div class="feature-panel"><h3>Top 3 restaurants</h3><div class="lab-podium" id="labTopRestaurants"></div></div>
+<div class="feature-panel"><h3>Cuisine podium</h3><div class="lab-podium" id="labCuisinePodium"></div><p class="feature-muted">Only cuisines with 3+ restaurants qualify.</p></div>
+</div>
+
+</section>
+<section class="dishes-view" id="dishesView">
+<div class="feature-heading"><div><span class="feature-kicker">RECOLLEAT / COLLECTIBLE ARCHIVE</span><h2>Your Dishes</h2></div><span class="feature-mark">★</span></div>
+<div class="dish-section-tabs" role="tablist" aria-label="Dishes sections">
+<button type="button" class="active" id="dishTabHall" role="tab" aria-controls="dishPanelHall" aria-selected="true" data-dish-panel="hall">Hall of Flavour</button>
+<button type="button" id="dishTabSignature" role="tab" aria-controls="dnaPanelSignature" aria-selected="false" data-dish-panel="signature">Signature Dishes</button>
+<button type="button" hidden aria-hidden="true" tabindex="-1" id="dishTabCategories" role="tab" aria-controls="dishPanelCategories" aria-selected="false" data-dish-panel="categories">Category Books</button>
+</div>
+<section id="dishPanelHall" class="dish-tab-panel" role="tabpanel" aria-labelledby="dishTabHall">
+<div class="feature-panel dish-toolbar">
+<label>Find a dish<input id="dishSearch" placeholder="Search dish, cuisine or restaurant…"/></label>
+<label hidden>Category<select id="dishCategoryFilter"><option value="">All categories</option></select></label>
+<details class="reco-31-dish-filters"><summary>Filter &amp; sort</summary><label>Rarity<select id="dishRarityFilter"><option value="">All ratings</option><option value="food_legend">Food of Legend · 10</option><option value="unforgettable">Unforgettable · 9–&lt;10</option><option value="house_favourite">House Favourite · 8–&lt;9</option><option value="crave_worthy">Crave Worthy · 7–&lt;8</option><option value="everyday">Everyday · 6–&lt;7</option><option value="average">Average · 5–&lt;6</option><option value="one_time">Just the one time · 4–&lt;5</option><option value="terrible">Terrible · 3–&lt;4</option><option value="scam">Scam · 2–&lt;3</option><option value="torture">Potential Torture · &lt;2</option></select></label>
+<label>Sort by<select id="dishSort"><option value="high">Highest rated</option><option value="low">Lowest rated</option><option value="name">Dish name</option><option value="restaurant">Restaurant</option></select></label>
+<form id="dishRankJump" class="dish-rank-jump" aria-label="Jump to a dish rank">
+<label for="dishJumpNumber">Jump to dish rank</label><input id="dishJumpNumber" type="number" min="1" step="1" inputmode="numeric" placeholder="#" aria-label="Dish rank"/><button type="submit">Go</button>
+</form></details>
+<label hidden>Add a dish to<select id="dishAddRestaurant"><option value="">Select restaurant</option></select></label>
+<button id="dishAddBtn" type="button" hidden aria-hidden="true" tabindex="-1">+ Add dish</button>
+</div>
+
+
+<details class="reco-accordion" id="hallAccordion" data-compact="true" open="">
+<summary class="reco-accordion-toggle"><span class="reco-acc-mark">✦</span><span class="reco-acc-title"><strong>Hall of Flavour</strong><small>Complete collectible ranking · every dish, every rating tier</small></span><span class="reco-acc-count" id="hallCount">All dishes</span><span class="reco-acc-chevron">⌄</span></summary>
+<div class="reco-accordion-body" id="hallOfFlavour"></div>
+<button id="toggleDishRanking" class="recolleat-show-more" type="button" aria-expanded="false">Show every dish in the ranking</button>
+</details>
+
+<div class="dish-stats dish-stats-bottom" id="dishStats" aria-label="Dish collection statistics"></div>
+</section><!-- dishPanelHall -->
+<section id="dishPanelCategories" hidden aria-hidden="true" class="dish-tab-panel" role="tabpanel" aria-labelledby="dishTabCategories" hidden><details class="reco-accordion dish-category-accordion" id="dishCategoriesAccordion" open>
+<summary class="reco-accordion-toggle"><span class="reco-acc-mark">▣</span><span class="reco-acc-title"><strong>Category stamp books</strong><small>Open a collection and flip through every dish</small></span><span class="reco-acc-count" id="dishCategorySectionCount">Collections</span><span class="reco-acc-chevron">⌄</span></summary>
+<div class="reco-accordion-body">
+<div class="stamp-explainer"><span class="stamp-explainer-icon">📖</span><div><strong>Choose a collection to open its stamp book</strong><p>Each category is its own flip-through album with dish photographs, ratings and restaurant passports.</p></div></div>
+<div class="dish-stamp-categories" id="dishCategoryHighlights"></div>
+<div class="feature-panel dish-category-manager">
+<div class="dish-category-manager-header"><div><h3>Manage your categories</h3><p class="feature-muted">Add or delete categories here. A dish can belong to several categories. Deleting a category never deletes dishes.</p></div><div class="category-add-inline"><input aria-label="New dish category" id="newDishCategory" placeholder="e.g. Street food"/><button id="addDishCategoryBtn" type="button">+ Add category</button></div></div>
+<div class="category-catalog" id="dishCategoryCatalog"></div>
+</div>
+</div>
+</details></section>
+</section>
+<section class="dna-view" id="dnaView">
+<div class="feature-heading"><div><span class="feature-kicker">RECOLLEAT / YOUR PALATE</span><h2>Food DNA</h2></div><span class="feature-mark">DNA</span></div>
+<div class="palate-nav legacy-dna-nav" role="tablist" aria-label="Dishes sections">
+  <button type="button" class="active" role="tab" id="dnaTabCode" aria-controls="dnaPanelCode" aria-selected="true" data-dna-tab="code">Palate Code</button>
+  <button type="button" role="tab" id="dnaTabSignature" aria-controls="dnaPanelSignature" aria-selected="false" data-dna-tab="signature">Signature Dishes</button>
+  <button type="button" role="tab" id="dnaTabStamps" aria-controls="dnaPanelStamps" aria-selected="false" data-dna-tab="stamps">Culinary Stamps</button>
+</div>
+<section class="palate-tab-panel" id="dnaPanelCode" role="tabpanel" aria-labelledby="dnaTabCode" data-dna-panel="code"><div id="palateCodeContent"></div></section>
+<section class="palate-tab-panel" id="dnaPanelSignature" role="tabpanel" aria-labelledby="dnaTabSignature" data-dna-panel="signature" hidden>
+  <section aria-label="Signature dish exhibition" class="feature-panel signature-museum-panel">
+    <div class="dna-collection-heading"><div><span class="feature-kicker">YOUR FOOD EXHIBITION</span><h3>Signature Dishes</h3><p class="feature-muted" id="dnaSignatureCount"></p></div><label class="museum-limit-label">Exhibit <select aria-label="Number of signature dishes" id="dnaTopCount"></select></label></div>
+    <div class="dna-highlights" id="dnaHighlights"></div>
+  </section>
+</section>
+<section class="palate-tab-panel" id="dnaPanelStamps" role="tabpanel" aria-labelledby="dnaTabStamps" data-dna-panel="stamps" hidden>
+  <section class="feature-panel"><div class="passport-summary"><div><span class="feature-kicker">RECOLLEAT / ACHIEVEMENTS</span><h3>Culinary Stamps</h3><p class="feature-muted">Eight collectible achievement families, each with ten levels. These milestones still use your wider restaurant collection, not the dish-only Palate Code.</p><div class="passport-meta-strip"><span class="passport-meta-chip">8 stamp families</span><span class="passport-meta-chip">10 levels each</span><span class="passport-meta-chip">Your private collection</span></div></div><div class="feature-mark">✦</div></div><div class="passport-achievement-grid" id="culinaryPassport"></div></section>
+</section>
+</section>
+<section class="list-view" id="listView">
+<aside class="list-sidebar">
+<div class="list-sidebar-head"><h3>Your lists</h3><button id="newListBtn">+</button></div>
+<div id="savedLists"></div>
+</aside>
+<section class="list-main" id="listMain"></section>
+</section>
+<section class="visit-view" id="visitView" data-visit-mode="calendar">
+<div class="visit-mode-tabs" role="tablist" aria-label="Visit history sections"><button id="visitCalendarTab" class="active" type="button" role="tab" tabindex="0" aria-selected="true">▦ Calendar</button><button id="visitWrappedTab" type="button" role="tab" tabindex="-1" aria-selected="false">✧ Monthly Wrapped</button></div>
+<div class="visit-layout">
+<section class="visit-panel">
+<div class="visit-toolbar">
+<div>
+<h2>Visit history</h2>
+
+</div>
+<button class="primary" id="logVisitBtn">+ Log visit</button>
+</div>
+<div class="month-nav">
+<button id="prevMonthBtn">←</button>
+<strong id="calendarMonthLabel"></strong>
+<button id="nextMonthBtn">→</button>
+<button id="todayMonthBtn">Today</button><input aria-label="Jump to calendar month" title="Jump to month" id="calendarMonthJump" type="month">
+</div>
+<div class="calendar-grid" id="calendarGrid"></div>
+<section class="visit-panel calendar-selected-panel" id="calendarSelectedPanel" style="margin-top:12px">
+<div class="calendar-visit-heading"><h3 id="calendarSelectionLabel">Visits on selected date</h3><button id="calendarShowMonth" type="button" aria-pressed="false">All month</button></div>
+<div class="visit-log" id="visitLog"></div>
+</section>
+</section>
+<aside class="visit-panel">
+<div class="month-summary">
+<div><span>Visits</span><b id="monthVisitCount">0</b></div>
+<div><span>Restaurants</span><b id="monthRestaurantCount">0</b></div>
+<div><span>Food value</span><b id="monthFoodValue">—</b><small id="monthFoodValueCoverage">No values logged</small></div>
+<div><span>You paid</span><b id="monthSpendTotal">—</b><small id="monthPersonalCoverage">No amounts logged</small></div>
+<div><span>Treated meals</span><b id="monthTreatedCount">0</b><small>Paid for by someone else</small></div>
+</div>
+
+<details class="calendar-spend-details"><summary>Your spending trend <small>Last 12 months · personally paid</small></summary><div class="spend-chart" id="spendChart"></div></details>
+<div class="reco-finance-card" id="recoFinance" aria-label="Your annual meal and payment insights"><div class="reco-finance-title"><h3>Your spending, clearly separated</h3><label>Year <select id="recoFinanceYear" aria-label="Year for financial insights"></select></label></div><div id="recoFinanceContent"></div></div>
+</aside>
+</div>
+<section class="visit-panel wrapped-only-panel" id="wrappedStoryPanel" aria-label="Monthly Wrapped story"><div class="monthly-wrapped" id="wrappedReport"></div><div class="reco-wrapped-restaurants"><h3>Restaurants visited this month</h3><div class="month-restaurants" id="monthRestaurants"></div></div></section>
+
+<details class="undated-visit-details"><summary>Visits without dates <span id="undatedVisitSummaryCount"></span></summary>
+<section aria-label="Visits with no known date" class="visit-panel" style="margin-top:12px">
+<div class="undated-log-head"><h3>Visits with unknown dates</h3><span class="undated-pill" id="undatedVisitCount">0</span></div>
+<p class="visit-history-note">These visits count towards your restaurant total without appearing on the calendar or influencing monthly reports.</p>
+<div class="visit-log" id="undatedVisitLog"></div>
+</section></details>
+</section>
+<section aria-label="My profile" class="profile-page" id="profileView" style="display:none">
+<div class="profile-eyebrow">01 / YOUR SPACE · LOCAL PROFILE</div>
+<div class="profile-intro"><div><h2>Make it yours<span>.</span></h2><p>Your own corner of Recolleat. A personal food journal you can build at your own pace.</p></div><span class="profile-private-label">PRIVATE ON THIS DEVICE</span></div>
+<div class="profile-layout">
+<div class="profile-identity-card">
+<div class="profile-identity-art"><div class="profile-orbit profile-orbit-one"></div><div class="profile-orbit profile-orbit-two"></div><div aria-label="Your profile photo" class="profile-identity-avatar" id="profileBigAvatar" role="img">R</div><div class="profile-art-tag">PERSONAL ARCHIVE / 001</div></div>
+<div class="profile-identity-content"><div class="profile-membership">THE COLLECTOR</div><h3 id="profileDisplayName">Your name</h3><p>Curating moments, meals and memories.</p><div class="profile-location-tag">● Local profile · Not publicly visible</div></div>
+</div>
+<details class="profile-edit-card"><summary>Edit profile picture and username <span aria-hidden="true">⌄</span></summary>
+<div class="profile-section-heading"><div><div class="profile-kicker">PERSONAL DETAILS</div><h3>Edit profile</h3></div><span class="profile-number">01—02</span></div>
+<form autocomplete="off" id="profileForm"><label class="profile-field-label" for="profileUsername">Username</label><input id="profileUsername" maxlength="30" placeholder="e.g. The Hungry Archivist" required="" type="text"/><div class="profile-hint">Up to 30 characters. This is your display name, not an online account.</div>
+<label class="profile-field-label" for="profilePhotoInput">Profile picture</label><div class="profile-photo-actions"><div class="profile-edit-avatar" id="profileEditAvatar">R</div><div class="profile-photo-buttons"><label class="profile-upload-label" for="profilePhotoInput">Upload picture</label><button id="profileRemovePhoto" type="button">Remove picture</button></div></div><input accept="image/png,image/jpeg,image/webp,image/gif" hidden="" id="profilePhotoInput" type="file"/><p class="profile-hint">Images are resized and stored in this browser. Export a backup to keep a copy.</p>
+<div class="profile-save-row"><button class="primary" type="submit">Save profile</button><span aria-live="polite" id="profileSaveStatus" role="status"></span></div></form>
+</details>
+</div>
+<section class="profile-feature-panel" id="profilePersonaHome" aria-label="Your Palate Code"><div class="profile-feature-title"><span>THE FOOD THAT MAKES YOU</span><h3>Your Palate Identity</h3></div></section>
+<details class="profile-stamps-feature" id="profileStampsHome"><summary><span><b>Culinary Stamps</b><small>Eight achievement collections · tap to explore</small></span><span aria-hidden="true">⌄</span></summary></details>
+
+<section class="reco-account-panel" id="recoAccountPanel" aria-labelledby="recoAccountTitle"><div class="profile-kicker">PRIVATE CONNECTIONS</div><h3 id="recoAccountTitle">Account &amp; Friends</h3><p>Optional online account for accepted friends only. Your journal stays on this device.</p><details class="reco-account-group" id="recoSharingDraftPanel"><summary>Plan future sharing permissions (local only)</summary><p>These optional preferences are stored on this device. Nothing is shared with friends yet. All settings default to private, and future publishing will require a separate explicit action.</p><div id="recoSharingDraftBody"></div></details><div id="recoAccountBody"></div><p id="recoAccountStatus" role="status" aria-live="polite"></p><p><a href="mailto:recolleat.paramount107@passmail.net">Contact safety support or appeal an account decision</a></p></section></section>
+
+<section class="help-page" id="helpView" aria-label="Help and frequently asked questions" style="display:none">
+  <div class="help-hero"><span class="privacy-eyebrow">YOUR RECOLLEAT GUIDE</span><h2>Help &amp; FAQs</h2><p>A quick guide to every main feature. Recolleat is a private food journal first: no account is required for the journal.</p><a class="help-feedback" href="https://docs.google.com/forms/d/e/1FAIpQLSc80f1pmRXgORQmy2X1wp_xggGetlXv198ZbsZZzsvX1XhyzA/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer">Send feedback ↗</a></div>
+  <div class="help-guides">
+    <article><span>01</span><h3>Home</h3><p>Log another meal, track collection milestones, and revisit food memories.</p></article>
+    <article><span>02</span><h3>Collection</h3><p>Browse, search and rank your saved restaurants. Open passports to review the details.</p></article>
+    <article><span>03</span><h3>Dishes</h3><p>Find Hall of Flavour and Signature Dishes in More. Log new dishes while adding a meal.</p></article>
+    <article><span>04</span><h3>Calendar</h3><p>Log dated meals and view monthly restaurant summaries in Monthly Wrapped.</p></article>
+    <article><span>05</span><h3>More</h3><p>Manage colour themes, backups, profile and advanced collection tools.</p></article>
+  </div>
+  <h3 class="help-faq-title">Frequently asked questions</h3>
+  <div class="help-faq">
+    <details><summary>Does Recolleat need an account or internet connection?</summary><p>No account is needed for the journal. Optional accounts are for friend connections only. Saved entries work locally on this device. Initial installation and updates require internet access; your saved journal works offline.</p></details>
+    <details><summary>How is a restaurant's overall score calculated?</summary><p>By default, food contributes 60%, value 20% and service 20%. You can change global scoring weights under More → Settings. Scores and rankings update without changing the underlying restaurant ratings.</p></details>
+    <details><summary>Where is my Palate Code, and why are some letters unknown?</summary><p>Open My Profile from the Hub. Your four letters come from rated dishes and restaurant context. Price preference uses distinct priced restaurants and compares whether higher-priced meals tend to receive higher food ratings. A balanced result is shown as ≈ rather than inventing a preference. The maturity bar measures data coverage, not statistical certainty. The 16 possible personas are explained under World of Personas.</p></details>
+
+    <details><summary>What does Palate Code measure?</summary><p>Palate Code uses your rated dishes and, for its spending dimension, the recorded cost per person or food value of your visits. The first dimensions describe cuisine breadth and repeated dish names; the others compare food ratings with price and measure rating generosity. The price trait uses rank association and compares lower-priced versus higher-priced rated restaurants, avoiding assumptions when prices are missing. It does not use a questionnaire or treat the number of visits as evidence of personality. Ratings from the same restaurant are averaged so a long menu does not dominate. A meaningful price spread is required: at least £10 or 20% of median cost, whichever is greater, between the lower and upper half medians. Typical cost is shown separately from rating preference. Near-neutral relationships can remain unassigned; the code may evolve as you add meals.</p></details>
+
+    <details><summary>How do I add a location picture?</summary><p>Open Places and tap Add photo or Edit photo on a location card. Select Choose from gallery, or use the other picture options. Search Google Images opens a separate Google search using the location name; choose a picture you have the right to use, save it to your phone or computer, then upload it. More picture options supports pasting a copied image on compatible browsers. All selected location pictures are stored locally and shared by restaurant cards with the same location label. Online searches send the search query to Google.</p></details>
+    <details><summary>How do I scan a receipt?</summary><p>Open Scan receipt from Home or Quick Log. Photograph a receipt. On supported browsers the app reads its text on-device. Where this is unavailable, copy the receipt text using your phone's text-recognition feature and paste it into the editor. Select the items you ate, correct prices, and transfer them into a Quick Log. Recolleat does not automatically upload or share receipts. Other applications used to copy text may have their own privacy terms.</p></details>
+    <details><summary>How do I view the two sides of a restaurant passport?</summary><p>Open any restaurant card, then switch between Ratings and Journal. On a phone you can also swipe horizontally over the passport page. The Journal side contains visit history, notes, dishes, photographs and location.</p></details>
+    <details><summary>How do I record a visit without knowing the date?</summary><p>Open the restaurant editor and add a visit with the date left blank. It counts as logged, but is excluded from month-specific charts.</p></details>
+    <details><summary>Why do I see “10+” visits?</summary><p>Restaurant visit badges show 10+ after ten visits. Recolleat retains the exact number internally. Your profile only counts actual logged visit records.</p></details>
+    <details><summary>How do Quick Add and drafts work?</summary><p>Tap Add to record a restaurant and its visit together. A food score is required to save a completed meal. Add multiple dishes and photographs immediately, or open More details for your meal value, cuisine and notes. Existing unfinished drafts remain available for editing and backup.</p></details>
+    <details><summary>How do I tell different branches apart?</summary><p>Enter the precise branch name and neighbourhood. Each restaurant record remains independently editable.</p></details>
+    <details><summary>How do I move my journal to another phone?</summary><p>Export a JSON backup from the Hub, install Recolleat at the same website address on the new device, then import the backup. Changes do not synchronise automatically.</p></details>
+    <details><summary>How do I install Recolleat on my phone?</summary><p>On iPhone, open the website in Safari and use Share → Add to Home Screen. On other phones, open the site in Chrome and choose Add to Home screen or Install app. Open once while connected to the internet to initialise offline caching.</p></details>
+    <details><summary>Where are my photos and restaurant details stored?</summary><p>In browser storage on this device, not in a Recolleat cloud account. Clearing site data or removing the app can delete them, so export backups regularly.</p></details>
+    <details><summary>How do I unlock more colour themes?</summary><p>Open More → Colour themes. Recolleat Classic and Black &amp; White are available immediately. Plum &amp; Champagne unlocks at 10 saved restaurants, Electric Citrus at 20, Crimson Red at 30 and Golden Hour at 40. These are different saved restaurants, not visits, dishes or unfinished drafts. Your existing or imported saved restaurants count. Earned theme rewards are permanent, even after deleting an entry. All milestones stay on this device with your collection; no account is needed.</p></details>
+    <details><summary>Can I change the colours and switch dark mode?</summary><p>Open More → Colour themes to view the unlock progress and choose an available palette. Light and dark mode are available for every unlocked theme, including both starting themes.</p></details>
+    <details><summary>How do I send feedback or report a bug?</summary><p>Use the Send feedback link at the top of this page. Describe the screen and steps to reproduce; screenshots help.</p></details>
+  </div>
+</section>
+
+ <section id="privacyView" class="privacy-page" aria-label="Privacy and Safety" style="display:none">
+  <div class="privacy-hero"><span class="privacy-eyebrow">RECOLLEAT / PRIVACY BY DESIGN</span><h2>Privacy &amp; Safety</h2><p>What stays on your device, when a connection is made, and how to protect your collection.</p><p class="legal-updated">Last updated: 23 November 2026</p></div>
+  <div class="privacy-grid">
+    <article class="privacy-panel"><h3>Your journal is local by default</h3><p>Restaurant records, reviews, scores, dishes, dates, places, photographs, spending, lists and recovery snapshots are stored in this browser's IndexedDB database. Profile details, drafts, preferences and backup reminders are also stored in browser local storage. Optional online accounts are limited to account identity, friend connections and related safety data. The journal has no automatic synchronisation, public feed or advertising system.</p><p>Recolleat's application code does not intentionally transmit your journal, receipt image, uploaded photos or personal spending to our servers. Internet access to load the application still exposes technical connection data to the hosting infrastructure.</p></article>
+    <article class="privacy-panel"><h3>Operator and contact details — publication incomplete</h3><p><strong>Service name:</strong> Recolleat. <strong>Contact email:</strong> <a href="mailto:recolleat.paramount107@passmail.net">recolleat.paramount107@passmail.net</a>. <strong>Legal operator's full name and any legally required establishment address:</strong> not yet supplied. These details still require verification and publication where applicable. The <a href="https://docs.google.com/forms/d/e/1FAIpQLSc80f1pmRXgORQmy2X1wp_xggGetlXv198ZbsZZzsvX1XhyzA/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer">optional feedback form</a> is hosted by Google and is not a substitute for a legal contact address.</p><p>If the operator is a data controller for hosting records or other processing, the controller identity and a working privacy contact must be stated here before publication. No operator identity has been invented.</p></article>
+  </div>
+  <details class="reco-legal-details" open><summary>What information is processed and why</summary><div><p><strong>Journal content:</strong> restaurant names, approximate locations you type, photos, ratings, dishes, notes, dates, price and payment fields, plus profile details. The purpose is to save and display your private journal and calculate your rankings, Palate Code, milestones, trends and recaps. You choose what to enter; there is no requirement to enter a real name or payment information.</p><p><strong>Camera and receipts:</strong> camera/gallery access starts only when you choose a photograph. The receipt preview uses a temporary browser image URL. If your browser exposes the TextDetector feature, optical character recognition is attempted on-device; otherwise you can paste text copied through another app, which has its own privacy terms. Recognised lines may contain card fragments or other personal information: review them before saving. Selected dishes and prices can be saved into the local journal; Recolleat does not automatically save the original receipt image as part of this workflow.</p><p><strong>Location pictures:</strong> You can choose a gallery image or paste a copied image for a location bubble. The selected image is compressed and stored in this browser in the local locations database, and is shared visually between restaurants using that location label. Recolleat does not automatically upload the picture. If you select Search Google Images, your browser opens Google and sends the location name in the search query; Google can process your connection information and is governed by its own privacy terms. Recolleat does not automatically retrieve or embed Google search results. Be mindful of image rights before reusing third-party pictures.</p><p><strong>Automated insights:</strong> journal statistics and preferences are derived locally from entries and do not make decisions with legal or similarly significant effects. They are not medical, nutritional or financial assessments.</p></div></details>
+  <details class="reco-legal-details"><summary>Who may receive connection information</summary><div><p>Optional Google restaurant matching sends the search phrase and connection information to Google Maps when you explicitly search. Only the selected Google place ID is retained in your local journal; restaurant search results are not saved. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy Policy</a> and <a href="https://maps.google.com/help/terms_maps/" target="_blank" rel="noopener noreferrer">Google Maps terms</a>.</p><p><strong>Optional restaurant discovery:</strong> searching your saved journal is local. If you choose Search Google Maps, Google receives the search text and normal connection information. Recolleat does not request your precise location or send the journal to Google. Google’s own settings and privacy notice govern the external Maps service.</p><p><strong>Website hosting:</strong> this edition is deployed on a Cloudflare Workers-hosted address. Cloudflare and network intermediaries can receive technical connection information, such as Internet Protocol addresses, request metadata and security logs, when the site is accessed. Whether the account enables additional analytics, the exact retention period, subprocessors and international transfer safeguards must be confirmed by the site operator.</p><p><strong>Optional Google Fonts:</strong> no Google Fonts request is made by default in this release. If you explicitly enable it below, your browser requests font resources from Google; Google can receive connection information such as your Internet Protocol address. You may disable subsequent font requests in the app’s Privacy &amp; Safety settings at any time. Disabling this setting does not retract any network request already completed.</p><p><strong>Feedback:</strong> selecting the external Google Forms feedback link takes you to a third-party site. Information you submit there is handled under Google's policies and the form owner's arrangements. No restaurant or journal data is sent there automatically.</p><p>Recolleat has no built-in external restaurant-search service, third-party advertising identifiers, social feed or marketing email collection in this release (account email is used for authentication, not marketing). This is based on the distributed application code; hosting/account configurations must be checked separately.</p></div></details>
+  <details class="reco-legal-details"><summary>Cookies, browser storage and choices</summary><div><p>Recolleat uses IndexedDB, local storage, a service worker and Cache Storage to run your requested offline journal, retain edits, remember appearance settings and keep the application available offline. Local storage also records your optional font preference. The app does not create advertising or analytics cookies. We have not verified whether the hosting platform adds its own cookies or other tracking technologies.</p><p>Under United Kingdom rules, browser storage is also a storage-and-access technology; it does not have to be called a cookie to be regulated. Functionally necessary storage and qualifying appearance preferences may rely on relevant exceptions; other non-exempt technologies require appropriate choice or consent.</p><div class="privacy-actions"><button type="button" id="privacyFontToggle" aria-pressed="false">Enable optional Google Fonts</button></div><p id="privacyFontStatus" class="privacy-status" role="status" aria-live="polite">Optional online font requests are disabled by default.</p></div></details>
+  <details class="reco-legal-details"><summary>Lawful basis and international data transfers</summary><div><p>For processing for which the operator is a controller and United Kingdom data protection law applies, the proposed assessment is: providing user-requested journal functionality may rely on performance of a contract (Article 6(1)(b)); necessary site operation and protection against abuse may rely on legitimate interests (Article 6(1)(f), subject to a balancing assessment); optional Google Fonts requests are made only following your affirmative choice (consent, Article 6(1)(a), where applicable). These bases require a final assessment by the identified operator and are not a verified representation of Cloudflare's own processing.</p><p>Technical data may be transferred outside the United Kingdom depending on hosting and optional third-party services. The specific destinations, adequacy arrangements and appropriate safeguards have not been confirmed. These must be documented by the operator before a compliant public launch. No automated profiling is used to make legally significant decisions.</p></div></details>
+  <details class="reco-legal-details"><summary>Retention, backups and security limitations</summary><div><p>Journal data remains in this browser until you edit or delete it, clear site storage or lose access to that browser profile. A local recovery point resides on the same device and is <strong>not</strong> an off-device backup. The JSON export can contain your full journal, photographs, profile and spending information. <strong>Exported JSON is not encrypted by Recolleat</strong>; protect it, especially on shared devices, email and cloud drives.</p><p>Clearing app storage or uninstalling an installed web app can remove entries permanently. Export regularly and verify the downloaded file separately. Backups stored outside the app and any hosting logs are not deleted by Recolleat's local erase function. Hosting log retention remains unverified pending an operator-level review.</p><p>Camera/photo permissions are governed by your browser and device. Local storage is not guaranteed to be private from someone who can access your unlocked device or browser profile. Avoid recording payment card details and personal data about other people unless appropriate.</p></div></details>
+  <details class="reco-legal-details"><summary>Your privacy rights and children</summary><div><p>You can access, correct, export and erase journal entries using the app. Where data protection law applies to processing by an identified controller, other rights may include access, correction, restriction, erasure, portability, objection and withdrawal of consent, depending on the lawful basis and circumstances. <strong>Your right to object to processing based on legitimate interests</strong> can be exercised by contacting the controller using the published contact email. You can turn off optional Google Fonts in the app's Privacy &amp; Safety settings. The operator must also provide a working data-protection complaints channel, acknowledge complaints within 30 days, investigate and explain the outcome, as required by the law effective June 2026. Send privacy requests or complaints to <a href="mailto:recolleat.paramount107@passmail.net">recolleat.paramount107@passmail.net</a>. The operator must maintain an effective response procedure and complete any remaining legally required identity disclosures.</p><p>You may complain to the United Kingdom <a href="https://ico.org.uk/make-a-complaint/" target="_blank" rel="noopener noreferrer">Information Commissioner's Office</a>. Recolleat is not specifically designed for children. Access is not age-verified. If children are likely to use this service, the operator must assess and satisfy the applicable Children's code obligations before launch.</p></div></details>
+  <div class="reco-account-legal"><h3>Optional online accounts and safety</h3><p>The journal, collections, reviews, ratings and photographs remain on your device. If the operator enables accounts, the configured Supabase project processes your email, authentication data, display name, invite code, friend requests, accepted connections, blocks and account safety reports. Friends cannot access journal content in this release. Only accepted connections are listed as friends. Account deletion removes your online identity and connections; safety reports may be retained with account references removed, subject to the operator’s documented retention policy. Device content must be deleted separately. Contact <a href="mailto:recolleat.paramount107@passmail.net">safety support</a> for complaints, appeals or account recovery. Do not impersonate others, send abusive requests or misuse invite codes. The operator must verify the configured processor, retention, security and legal notices before inviting users.</p></div><div class="privacy-controls">
+    <h3>Your local data controls</h3><p>Export before deleting. Erasure affects Recolleat's journal and profile in this browser, not previously downloaded files, browser-managed offline application files or hosting logs.</p>
+    <div class="privacy-actions"><button type="button" class="primary" id="privacyExport">Export my journal</button><button type="button" id="privacyErase" class="danger-outline">Erase this device's Recolleat journal</button></div>
+    <p class="privacy-status" id="privacyStatus" role="status" aria-live="polite"></p>
+  </div>
+  <details class="reco-legal-details"><summary>Logging, scoring, presentation and archived categories</summary><div><p>Recolleat records a restaurant and visit together when you use Add. A food rating is required for completed Quick Log entries. Optional dish names, dish scores, photographs and a meal value (the value of food and drink attributable to you, not the whole table) are stored locally. The “Someone paid for my meal” choice records that you personally paid £0; otherwise personal payment is entered separately and may be unknown. This is an estimate, not a bank-verified transaction. Older visit entries with distinct personal-payment amounts are retained unless their meal value or payment status is changed.</p><p>Scoring weights and the cuisine ranking method (mean or median grand-list position) are saved in local preferences and included in new exported backups. Both options calculate on the device and are applied to displayed restaurant or cuisine rankings, respectively. Changing them recalculates displayed rankings but does not rewrite original food, value or service ratings. Older dish category information remains in existing records and backups for compatibility even though category books and category-entry controls are hidden. Graph data is not separately uploaded.</p><p>Photographs selected while adding a visit or dish are processed on-device into journal media and may be included in exported backups. The More navigation also displays any locally saved profile picture; it does not upload that picture. Optional accounts store identity and friend connections separately; there is no journal cloud synchronisation or external journal image upload.</p></div></details>
+<div class="privacy-notes"><h3>Legal information</h3><p>Read the <button type="button" class="legal-text-link" id="privacyTermsLink">Terms of Use</button>, or open the <a href="./privacy.html">standalone Privacy &amp; Safety notice</a>. This is an accurate description of the reviewed local-first client application, not a certification of the host's configuration or worldwide regulatory compliance.</p><p class="privacy-about">Recolleat · Draft legal notices pending operator verification · 23 November 2026</p></div>
+ </section>
+ <section id="termsView" class="privacy-page" aria-label="Terms of Use" style="display:none">
+  <div class="privacy-hero"><span class="privacy-eyebrow">RECOLLEAT / TERMS</span><h2>Terms of Use</h2><p>Conditions for using the current free, local-first Recolleat journal.</p><p class="legal-updated">Last updated: 23 November 2026 · Build 3.4</p></div>
+  <div class="privacy-panel"><h3>Publisher details — verification required</h3><p>Recolleat is the name of this service. <strong>Contact email:</strong> <a href="mailto:recolleat.paramount107@passmail.net">recolleat.paramount107@passmail.net</a>. The legal operator's name and any legally required establishment address have <strong>not</strong> yet been provided and must be completed where applicable before public launch. The external feedback form is not a legal contact channel. Nothing in these terms removes your mandatory consumer or data protection rights.</p></div>
+  <details class="reco-legal-details" open><summary>1. Service and availability</summary><div><p>Recolleat is currently a free personal food journal for recording restaurants, dishes, photographs, visits, ratings and spending. It is supplied without a subscription or purchases in this build. It works locally in a compatible browser, with offline functionality subject to installation, storage availability and the browser's settings. An optional Recolleat account can synchronise friend connections only. There is no automatic cloud backup or cross-device synchronisation of journal data.</p><p>Features, design and compatibility may change. Material changes should be disclosed clearly and not be used to override rights already established by applicable law. We cannot promise uninterrupted access or that browser-managed storage will never be lost.</p></div></details>
+  <details class="reco-legal-details"><summary>2. Your content and permission to use the app</summary><div><p>You retain any rights you have in photographs, notes and other content you add. Recolleat does not claim ownership of your journal entries. You are responsible for content you choose to record and for having permission to use any third-party images or personal information you add.</p><p>You may use this release for your own lawful personal journaling. Do not interfere with its operation, attempt unauthorised access to hosting systems or redistribute the application code in breach of applicable intellectual property rights. Names of restaurants and third-party brands remain the property of their respective owners where applicable.</p></div></details>
+  <details class="reco-legal-details"><summary>3. Backups, imports and deletion</summary><div><p>Journal content resides in device/browser storage. It may be removed by storage clearing, device loss, browser malfunction or website-origin changes. You should maintain separate verified exports. Exports may contain personal and financial information and are not encrypted by the app. Restoring a backup with the Replace option can overwrite existing records; review the warnings before proceeding.</p><p>The in-app erase control removes Recolleat's designated local records; it does not erase downloaded exports, device/cloud backups kept elsewhere, or hosting-provider logs. Do not uninstall or clear website data as an update procedure.</p></div></details>
+  <details class="reco-legal-details"><summary>4. Ratings, receipt recognition and costs</summary><div><p>Ratings, Palate Code, trends and recaps are personal journal features, not objective restaurant assessments. Receipt text detection, price parsing, bill values and payment calculations may be incomplete or incorrect. Review original receipts and amounts before relying on them, especially where service charges, taxes or shared payments are involved. Recolleat is not a payment processor and does not provide professional financial, nutritional or medical advice.</p></div></details>
+  <details class="reco-legal-details"><summary>5. Third-party services and privacy</summary><div><p>The application is hosted online, and visiting it involves technical exchanges with the hosting service. Optional Google Fonts connections occur only when enabled. External feedback forms and any links you elect to open are controlled by third parties. Their terms and privacy notices may apply. Read <button type="button" class="legal-text-link" id="termsPrivacyLink">Privacy &amp; Safety</button> for details about local storage and your choices.</p></div></details>
+  <details class="reco-legal-details"><summary>6. Legal rights and liability</summary><div><p>Nothing in these terms excludes or limits liability where doing so would be unlawful, including liability for death or personal injury caused by negligence, fraud or fraudulent misrepresentation, or rights and remedies that cannot legally be excluded. If consumer-protection law applies, your statutory rights remain unaffected.</p><p>The app is a free personal journaling tool; you should independently check any important data and preserve backups. Any limitations of responsibility must be interpreted subject to applicable law and a fair balance of consumer rights, not as a blanket waiver of claims.</p></div></details>
+  <details class="reco-legal-details"><summary>7. Changes, disputes and applicable law</summary><div><p>The release and notice date are shown above. Changes to the service and these terms will be published with updated dates; materially adverse changes should receive clear notice and must respect mandatory consumer protections. For a United Kingdom-based operator, English law may be intended to govern, but mandatory rights in the country where a consumer lives are not displaced where applicable. The operator's status and address must be verified before any contractual jurisdiction wording is finalised.</p><p>For general enquiries or complaints, contact <a href="mailto:recolleat.paramount107@passmail.net">recolleat.paramount107@passmail.net</a>. The operator must maintain an effective complaints process and complete any remaining legally required identity disclosures. The <a href="https://ico.org.uk/make-a-complaint/" target="_blank" rel="noopener noreferrer">Information Commissioner's Office</a> handles eligible data protection complaints; it is not a general consumer-contract dispute service.</p></div></details>
+  <details class="reco-legal-details"><summary>Meal values and configurable scoring</summary><div><p>The simplified Meal value field is the value of food and drink attributable to the user, not the whole table’s bill. If the user marks that someone paid for the meal, Recolleat records no personal spending for that meal. Values and derived financial summaries are self-reported and should not be treated as accounting or payment records.</p><p>Location photos can be selected locally or copied from outside sources. The Google Images shortcut opens an external search; you remain responsible for selecting images you have permission to use, particularly if you share or publicly publish them. Recolleat does not provide an image licence or automatically download Google Images results.</p><p>Ranking weights can be changed globally in Settings; this changes rankings and comparisons without changing the stored original ratings. Previous dish-category information is retained for compatibility even when category books are not visible.</p></div></details><div class="privacy-notes"><p><button type="button" class="legal-text-link" id="termsPrivacyBottom">Return to Privacy &amp; Safety</button> · <a href="./terms.html">Open standalone Terms of Use</a></p><p class="privacy-about">Recolleat · Draft legal notices pending operator verification · 23 November 2026</p></div>
+ </section>
+</main>
+<footer>
+<span id="storageStatus">Loading local database…</span>
+<div class="reco-footer-legal"><button type="button" class="privacy-footer-link" id="privacyFooterLink">Privacy &amp; Safety</button><button type="button" class="privacy-footer-link" id="termsFooterLink">Terms of Use</button></div>
+</footer>
+</div>
+</div>
+<dialog class="dish-book-dialog" id="dishBookDialog" aria-labelledby="dishBookTitle"><div class="dialog-head"><div><h2 id="dishBookTitle">Dish stamp book</h2><p id="dishBookSub">Your collection of dishes.</p></div><button class="x" data-close="dishBookDialog" type="button" aria-label="Close dialog">×</button></div><div class="dish-book-body"><div class="dish-book-page" id="dishBookPage"></div><div class="dish-book-nav"><button id="dishBookPrev" type="button">← Previous</button><span id="dishBookCount">Page 1</span><button id="dishBookNext" type="button">Next →</button></div></div></dialog>
+<dialog class="dish-book-dialog" id="dishPhotoDialog" aria-labelledby="v42DialogTitle1"><div class="dialog-head"><div><h2 id="v42DialogTitle1">Assign a dish photo</h2><p id="dishPhotoSub">Paste a copied image to attach a photo to this specific dish.</p></div><button class="x" data-close="dishPhotoDialog" type="button" aria-label="Close dialog">×</button></div><div class="dish-photo-content"><div class="dish-photo-choices" id="dishPhotoChoices"></div><div class="paste-zone dish-paste-only" id="dishPhotoPasteZone" tabindex="0">Click to focus, then paste an image with Ctrl+V or Cmd+V</div><p class="feature-muted">Paste-only: the photograph will be attached to this dish rather than added to the restaurant gallery.</p><button id="dishPhotoClear" type="button">Remove dish photo</button></div></dialog>
+<dialog class="dish-category-dialog" id="dishCategoryDialog" aria-labelledby="v42DialogTitle2">
+<div class="dialog-head"><div><h2 id="v42DialogTitle2">Edit dish categories</h2><p id="dishCategoryDialogSubtitle">Choose every category that applies to this dish.</p></div><button class="x" data-close="dishCategoryDialog" type="button" aria-label="Close dialog">×</button></div>
+<div class="category-dialog-body">
+<div class="category-choice-grid" id="dishCategoryChoices"></div>
+<div class="category-add-inline"><input aria-label="New dish category" id="dishCategoryNewInDialog" placeholder="Add a new category, e.g. Street food"/><button id="dishCategoryAddFromDialog" type="button">+ Add category</button></div>
+<p class="feature-muted">A dish can belong to several categories. Clear all selections to mark it Uncategorised.</p>
+<div class="category-dialog-actions"><button data-close="dishCategoryDialog" type="button">Cancel</button><button class="primary" id="dishCategorySave" type="button">Save categories</button></div>
+</div>
+</dialog>
+<dialog id="recoQuickLogDialog" aria-labelledby="recoQuickLogTitle" class="reco-quicklog-dialog">
+ <div class="dialog-head"><div><span class="feature-kicker">FAST & LOCAL</span><h2 id="recoQuickLogTitle">Add a restaurant &amp; visit</h2><p>One flow: name the place, rate the food, add dishes. Everything else is optional.</p></div><button class="x" type="button" data-close="recoQuickLogDialog" aria-label="Close quick meal logging">×</button></div>
+ <form id="recoQuickLogForm" class="reco-quicklog-form">
+ <label>Restaurant <input id="recoQuickRestaurant" list="recoQuickRestaurants" required autocomplete="off" placeholder="Search saved places or type a new one" maxlength="120"><datalist id="recoQuickRestaurants"></datalist></label>
+ 
+ <div class="reco-quicklog-grid"><label>Date <input id="recoQuickDate" type="date"></label><label>Food score /100 <span class="reco-required">*</span><input id="recoQuickFood" type="number" inputmode="numeric" required min="0" max="100" placeholder="Your score, 0–100"></label></div>
+ <div class="reco-build3-dish-block"><div class="reco-build3-dish-header"><strong>Dishes (optional)</strong><span>Add as many as you like</span></div><div id="recoQuickDishRows" class="reco-build3-dish-rows"></div><button type="button" id="recoQuickAddDish">+ Add dish</button></div><div class="reco-build3-photo-block"><strong>Meal or restaurant photographs (optional)</strong><div class="reco-quicklog-photo-row"><label class="reco-camera-btn">Take photo<input id="recoQuickCamera" type="file" capture="environment" accept="image/*"></label><label class="reco-camera-btn">Choose photo<input id="recoQuickGallery" type="file" accept="image/*"></label><div id="recoQuickPhotoPreview"></div></div></div><details class="reco-quicklog-extras"><summary>More details <span>Cuisine, meal value and notes</span></summary><label class="reco-quicklog-cuisine" id="recoQuickCuisineWrap">Cuisine for a new restaurant (optional)<input id="recoQuickCuisine" maxlength="80" placeholder="e.g. Japanese"></label>
+ <label>Meal value (£) <small>Value of the food and drink you personally had — not the whole table</small><input id="recoQuickValue" type="number" inputmode="decimal" min="0" step="0.01" placeholder="Optional"></label><label>What you paid (£)<input id="recoQuickPaid" type="number" min="0" step="0.01" inputmode="decimal" placeholder="Optional"><button type="button" class="reco33-use-value" id="recoQuickUseValue">Same as meal value</button></label>
+ <label class="reco-quicklog-treat"><input type="checkbox" id="recoQuickTreated"> Someone paid for my meal</label>
+ <input type="hidden" id="recoQuickDish"><input type="hidden" id="recoQuickDishScore">
+ <label>Short memory <textarea id="recoQuickNote" rows="2" placeholder="What made this meal memorable?"></textarea></label>
+ 
+ </details><p id="recoQuickHint" class="field-hint" role="status">Your first visit is saved with the restaurant. Add dishes and photographs above, or open More details for extra information.</p>
+ <div class="reco-quicklog-actions"><button type="button" id="recoReceiptFromQuick">Receipt</button><button type="button" id="recoQuickFull">Save &amp; review</button><button type="submit" class="primary" id="recoQuickSave">Save meal</button></div>
+ </form>
+</dialog>
+<dialog id="quickAddDialog" class="quick-add-dialog" aria-labelledby="quickAddTitle">
+<div class="dialog-head"><div><h2 id="quickAddTitle">Quick Add</h2><p>Capture the place now. Complete the review whenever you like.</p></div><button class="x" type="button" data-close="quickAddDialog" aria-label="Close">×</button></div>
+<form id="quickAddForm" class="quick-add-form"><label>Restaurant name<input id="quickName" placeholder="e.g. Dishoom Covent Garden" required maxlength="120"></label><label>Cuisine<input id="quickCuisine" placeholder="e.g. Indian" maxlength="80"></label><label>Location / branch<input id="quickLocation" placeholder="e.g. Covent Garden, London" maxlength="120"></label><label>Food score (optional)<input id="quickFood" type="number" min="0" max="100" placeholder="Leave blank if unsure"></label><div class="quick-tip">You can save an unfinished draft, or publish a food-only rating now. Publishing needs a food score; value and service stay unrated until you finish them.</div><div class="dialog-actions"><button type="submit">Save draft</button><button type="button" class="primary" id="quickPublish">Save rated entry</button><button id="quickContinue" type="button">Full review →</button></div></form>
+</dialog>
+<dialog id="addChoiceDialog" class="reco-choice-dialog" aria-labelledby="addChoiceTitle">
+<div class="dialog-head"><h2 id="addChoiceTitle">Add to your collection</h2><button type="button" class="x" data-close="addChoiceDialog" aria-label="Close add menu">×</button></div>
+<p>Save a thought now or record the full restaurant experience.</p>
+<div class="reco-choice-grid">
+<button type="button" id="chooseQuickAdd"><strong>Quick entry</strong><span>Save a food-only rating or draft in seconds.</span></button>
+<button type="button" id="chooseFullAdd"><strong>Full review</strong><span>Rate food, value and service, then add dishes.</span></button>
+</div>
+</dialog>
+<dialog id="foodRatingDialog" class="rating-dialog" aria-labelledby="ratingDialogTitle">
+<div class="dialog-head"><h2 id="ratingDialogTitle">Food rating helper</h2><button type="button" class="x" id="ratingHelperClose" aria-label="Close rating helper">×</button></div>
+<div class="rating-helper-content">
+<p class="rating-helper-lede">Compare this restaurant's food with places you've already rated. The questions narrow your likely score; they won't change your rating unless you accept the suggestion.</p>
+<div class="rating-helper-progress" id="ratingHelperProgress" aria-live="polite"></div>
+<div id="ratingHelperQuestion" aria-live="polite"></div>
+<div class="rating-helper-result" id="ratingHelperResult" aria-live="polite"></div>
+<div class="rating-helper-footer"><button type="button" id="ratingHelperStop">Finish now</button><button type="button" class="primary" id="ratingHelperUse" hidden>Use suggested food rating</button></div>
+</div>
+</dialog>
+<dialog id="editor" aria-labelledby="editorTitle">
+<div class="dialog-head"><div><h2 id="editorTitle">Add restaurant</h2><p>Create a restaurant memory.</p></div><button class="x" data-close="editor" aria-label="Close dialog">×</button></div>
+<form id="editorForm">
+<div class="editor-steps" role="tablist" aria-label="Restaurant editor steps">
+<button type="button" role="tab" id="editorStepTab1" aria-controls="editorStepPanel1" tabindex="0" class="editor-step active" data-editor-select-step="1" aria-selected="true">1 · Details</button>
+<button type="button" role="tab" id="editorStepTab2" aria-controls="editorStepPanel2" tabindex="-1" class="editor-step" data-editor-select-step="2" aria-selected="false">2 · Ratings</button>
+<button type="button" role="tab" id="editorStepTab3" aria-controls="editorStepPanel3" tabindex="-1" class="editor-step" data-editor-select-step="3" aria-selected="false">3 · Dishes &amp; visits</button>
+</div><details class="editor-section" role="tabpanel" aria-labelledby="editorStepTab1" id="editorStepPanel1" data-editor-step="1" open=""><summary><span>Essentials</span><small>Name, cuisine &amp; location</small><b class="section-chevron">⌄</b></summary><div class="section-body form-grid">
+
+<div hidden aria-hidden="true"><div id="placeSearchResults"></div><div id="placeSelectedNote"></div><input id="googleMapsUrl" type="hidden" value=""></div>
+<div class="full" id="recoGoogleEditor"></div><label>Restaurant<input id="restaurant" placeholder="Restaurant name" required=""/></label><label>Cuisine<input id="cuisine" list="cuisineList" placeholder="Type or create a cuisine"><datalist id="cuisineList"></datalist></input></label><label>Location<input id="location" list="locationList" placeholder="e.g. Soho, London"><datalist id="locationList"></datalist><small>You can still invent your own location labels.</small></input></label>
+<label class="full">Group vibe
+        <div class="vibe-options">
+<label class="vibe-check"><input type="checkbox" value="Solo"/><span>Solo</span></label>
+<label class="vibe-check"><input type="checkbox" value="Date"/><span>Date</span></label>
+<label class="vibe-check"><input type="checkbox" value="Friends"/><span>Friends</span></label>
+<label class="vibe-check"><input type="checkbox" value="Party"/><span>Party</span></label>
+<label class="vibe-check"><input type="checkbox" value="Family"/><span>Family</span></label>
+</div>
+</label><label>Region
+        <label class="inline-check"><input id="international" type="checkbox"> <span>International</span></input></label>
+<small>Tick this for restaurants outside the United Kingdom.</small>
+</label></div></details><details class="editor-section" role="tabpanel" aria-labelledby="editorStepTab2" id="editorStepPanel2" data-editor-step="2" open=""><summary><span>Ratings &amp; dishes</span><small>Food, value, service, £ per person and dishes</small><b class="section-chevron">⌄</b></summary><div class="section-body form-grid"><label>Food rating <button id="openFoodRatingHelper" type="button" class="rating-help-btn">Compare with restaurants · up to 7 questions</button><div class="range-row"><input id="foodScore" max="100" min="0" type="range" value="75"/><input id="foodScoreNumber" max="100" min="0" type="number" value="75"/></div></label><label>Value for money 
+        <div class="range-row"><input id="valueScore" max="100" min="0" step="1" type="range" value="70"/><input id="valueScoreNumber" max="100" min="0" step="1" type="number" value="70"/></div><small class="reco-rating-status" id="editorValueStatus" aria-live="polite"></small>
+</label><label>Service<select id="service"><option value="Unrated">Not rated yet</option><option>Horror</option><option>Sloppy</option><option selected="">Average</option><option>Respectable</option><option>Lovely</option></select></label><label>Price per person<div class="range-row"><input id="pp" max="75" min="0" type="range" value="25"/><input id="ppNumber" max="75" min="0" type="number" value="25"/></div><small class="reco-rating-status" id="editorPriceStatus" aria-live="polite"></small></label></div></details><details class="editor-section" role="tabpanel" aria-labelledby="editorStepTab3" id="editorStepPanel3" data-editor-step="3" open=""><summary><span>Dishes &amp; visits</span><small>Items, visits, photographs and notes</small><b class="section-chevron">⌄</b></summary>
+<div class="section-body form-grid"><div class="full"><strong>Undated review dishes</strong><small>Use this only for dishes without a visit record. For a specific meal, add dishes in Calendar or Quick Log.</small><div class="items-editor" id="itemsEditor"></div><details id="reco33ExistingVisitDishes" class="reco33-existing-dishes" hidden><summary>Also recorded on visits <span id="reco33VisitDishCount"></span></summary><div id="reco33VisitDishList"></div><p class="field-hint">These are already in your journal. Edit them from the restaurant passport or Calendar, rather than adding them again.</p></details><datalist id="dishCategorySuggestions"><option value="Burger"></option><option value="Pizza"></option><option value="Kebab"></option><option value="Steak"></option><option value="Sushi"></option><option value="Curry"></option><option value="Pasta"></option><option value="Dessert"></option><option value="Seafood"></option><option value="Breakfast"></option><option value="Sandwich"></option><option value="Noodles"></option><option value="Salad"></option><option value="Other dishes"></option></datalist><button id="addItemBtn" type="button">+ Add item</button></div><div class="visit-editor">
+<div class="visit-editor-top"><div class="visit-editor-count"><strong id="editorVisitTotal">1</strong><div><b>Visits recorded</b><span style="display:block">No need to remember the date.</span></div></div><button id="editorAddVisit" type="button">+ Add another visit</button></div>
+<div class="visit-editor-rows" id="editorVisitRows"></div>
+<small class="visit-history-note">Leave dates empty when you cannot remember. Use Visit History to add spending or notes; unknown dates won't be placed on the calendar.</small>
+</div></div></details><details class="editor-section editor-subsection" data-editor-step="3"><summary><span>Photos</span><small>Restaurant gallery and clipboard</small><b class="section-chevron">⌄</b></summary><div class="section-body form-grid"><div class="editor-photo-duo"><div class="editor-photo-col"><h4>Restaurant gallery</h4><label>Pictures
+        <input accept="image/*" id="photos" multiple="" type="file"/><label class="reco-camera-btn">📷 Take restaurant photo<input type="file" id="recoEditorCamera" accept="image/*" capture="environment" aria-label="Take photograph with your camera" /></label>
+<div class="paste-zone" id="pasteZone" tabindex="0">Click here, then press Ctrl+V / Cmd+V to paste a copied image</div>
+<small>Upload files or paste images from your clipboard. Images are compressed and stored in this browser.</small>
+</label><div class="photo-preview" id="photoPreview"></div></div></div></div></details><details class="editor-section editor-subsection" data-editor-step="3"><summary><span>Notes</span><small>What stood out?</small><b class="section-chevron">⌄</b></summary><div class="section-body form-grid"><label class="full">Notes<textarea id="notes" placeholder="Anything worth remembering…"></textarea></label></div></details>
+<div class="editor-step-controls"><button type="button" id="editorPrevStep">← Previous</button><span id="editorStepLabel">Step 1 of 3</span><button type="button" id="editorNextStep" class="primary">Next →</button></div>
+<div class="dialog-actions"><button type="button" id="editorSaveDraft">Save draft</button><button class="danger" id="deleteBtn" type="button">Delete</button><button class="primary" type="submit">Save memory</button></div>
+</form>
+</dialog>
+<dialog class="passport-dialog" id="passportDialog" aria-labelledby="passportTitle">
+<div class="dialog-head"><div><h2 id="passportTitle">Restaurant passport</h2><p>Your restaurant, as a collectible card.</p></div><div class="passport-actions"><button type="button" id="passportLogVisitBtn" class="primary">Log visit</button><button id="passportEditBtn">Edit</button><button class="x" data-close="passportDialog" aria-label="Close dialog">×</button></div></div>
+<div class="passport-shell" id="passportContent"></div>
+</dialog>
+<dialog id="cuisinePassportDialog" class="reco33-cuisine-passport" aria-labelledby="cuisinePassportTitle"><div class="dialog-head"><h2 id="cuisinePassportTitle">Cuisine passport</h2><button type="button" class="x" data-close="cuisinePassportDialog" aria-label="Close cuisine passport">×</button></div><div id="cuisinePassportPage" class="reco33-cuisine-page"></div><div class="reco33-cuisine-controls"><button type="button" id="cuisinePassportPrev" aria-label="Previous passport page">‹</button><span id="cuisinePassportCounter" aria-live="polite">Overview · 1/3</span><button type="button" id="cuisinePassportNext" aria-label="Next passport page">›</button></div></dialog><dialog id="listDialog" aria-labelledby="listDialogTitle">
+<div class="dialog-head"><div><h2 id="listDialogTitle">Create list</h2><p>Build a custom ranked restaurant list.</p></div><button class="x" data-close="listDialog" aria-label="Close dialog">×</button></div>
+<div class="dialog-body">
+<label>List name<input id="listName" placeholder="e.g. Underrated places"/></label>
+<label>Description<textarea id="listDescription" placeholder="What this list is for…"></textarea></label>
+<div class="dialog-actions"><button class="danger" id="deleteListBtn">Delete list</button><button class="primary" id="saveListBtn">Save list</button></div>
+</div>
+</dialog>
+<dialog id="visitDialog" aria-labelledby="visitDialogTitle">
+<div class="dialog-head">
+<div><h2 id="visitDialogTitle">Log visit</h2><p>Record the actual visit, not just the restaurant profile.</p></div>
+<button class="x" data-close="visitDialog" aria-label="Close dialog">×</button>
+</div>
+<div class="dialog-body">
+<label>Restaurant
+      <input id="visitRestaurantSearch" list="visitRestaurantList" placeholder="Type restaurant name…"/>
+<datalist id="visitRestaurantList"></datalist>
+<small>Start typing instead of scrolling through every place.</small>
+</label>
+<label>Date <small>(optional — leave blank if you do not remember)</small><input id="visitDate" type="date"/></label>
+<fieldset class="visit-costs"><legend>Meal value and payment</legend><p class="field-hint">Record the value of food and drink you personally had, not the whole table’s bill. Both amounts are optional.</p>
+<div class="visit-price-fields"><label>Meal value (£) <small>Your food and drink only</small><input id="visitFoodValue" min="0" max="10000000" inputmode="decimal" placeholder="e.g. 42.50" step="0.01" type="number"/></label>
+<label>What you paid (£)<input id="visitSpend" min="0" max="10000000" inputmode="decimal" placeholder="e.g. 0.00" step="0.01" type="number"/><button type="button" class="reco33-use-value" id="recoVisitUseValue">Same as meal value</button></label></div>
+<label class="visit-treat-toggle" for="visitPaidFor"><input id="visitPaidFor" type="checkbox"/><span><b>Someone paid for my meal</b><small>Your personal payment is zero when this is checked.</small></span></label>
+<p class="field-hint" id="visitCostHint" role="status">Unknown amounts stay unknown in the calendar totals.</p></fieldset>
+<div class="reco-visit-detail"><h3>What did you have?</h3><p class="field-hint">Add dishes for this visit only. Existing dishes can be edited here; undated review dishes are separate.</p><div id="recoVisitDishes"></div><button id="recoVisitAddDish" type="button">+ Add a dish to this visit</button><label class="reco-camera-btn">📷 Take visit photo<input id="recoVisitCamera" type="file" accept="image/*" capture="environment" aria-label="Take visit photograph" /></label><label class="reco-camera-btn">Choose visit photo<input id="recoVisitPhotoChoose" type="file" accept="image/*" /></label><div id="recoVisitPhotoPreview" class="reco-visit-photo-preview"></div><label>Food score on this visit (optional, 0–100)<input id="recoVisitFoodRating" type="number" min="0" max="100" placeholder="Leave blank if unrated" inputmode="numeric" /></label></div>
+<label>Visit note<textarea id="visitNote" placeholder="Optional — who you went with, occasion, anything memorable…"></textarea></label>
+<div class="dialog-actions">
+<button class="danger" id="deleteVisitBtn">Delete visit</button>
+<button class="primary" id="saveVisitBtn">Save visit</button>
+</div>
+</div>
+</dialog>
+<dialog id="recoReceiptDialog" class="reco-receipt-dialog" aria-labelledby="recoReceiptTitle">
+<div class="dialog-head"><div><span class="feature-kicker">LOCAL RECEIPT ASSISTANT</span><h2 id="recoReceiptTitle">Add dishes from a receipt</h2><p>Review what you ate before logging it. Recolleat processes this locally; other text-copying apps have separate policies.</p></div><button type="button" class="x" data-close="recoReceiptDialog" aria-label="Close receipt scanner">×</button></div>
+<div class="dialog-body reco-receipt-body">
+<div class="reco-receipt-inputs"><label class="reco-camera-btn">Take receipt photo<input type="file" id="recoReceiptCamera" accept="image/*" capture="environment"></label><label class="reco-camera-btn">Choose receipt photo<input type="file" id="recoReceiptFile" accept="image/*"></label></div>
+<p id="recoReceiptStatus" role="status" class="field-hint">Automatic text detection works only on browsers that expose it. Otherwise, copy the receipt text with your phone's text-recognition tool and paste it below.</p>
+<img id="recoReceiptPreview" class="reco-receipt-preview" hidden alt="Selected receipt image for your review">
+<label class="reco-receipt-textlabel">Receipt text (editable)<textarea id="recoReceiptText" rows="5" placeholder="Example: Chicken ramen 14.50&#10;Gyoza 6.50&#10;Matcha latte 5.50"></textarea></label>
+<button type="button" id="recoReceiptParse">Find items and prices</button>
+<div id="recoReceiptLines" class="reco-receipt-lines" aria-label="Detected receipt dishes"></div>
+<div class="reco-receipt-totals"><span>Value of selected items</span><strong id="recoReceiptSelectedTotal">£0.00</strong></div>
+<p class="field-hint">Items and prices can be wrong. Check quantities, discounts and service before saving. Only selected items are transferred to Quick Log; you decide how much you personally paid.</p>
+<div class="dialog-actions"><button type="button" id="recoReceiptCancel">Cancel</button><button type="button" class="primary" id="recoReceiptContinue" disabled>Continue to Quick Log</button></div>
+</div></dialog>
+<dialog id="importDialog" aria-labelledby="v42DialogTitle3">
+<div class="dialog-head"><div><h2 id="v42DialogTitle3">Import Recolleat / Palate backup</h2><p id="importSummary"></p></div><button class="x" data-close="importDialog" aria-label="Close dialog">×</button></div>
+<div class="dialog-body">
+<p><b>Merge</b> keeps your existing restaurants and lists, then adds/updates the imported ones.</p>
+<p><b>Replace</b> swaps your stored collection in one database transaction. Existing entries, photos, visits and drafts not in the incoming backup will be removed.</p>
+<label class="reco-restore-consent" id="recoReplaceConsentWrap"><input type="checkbox" id="recoReplaceConsent"/> I have saved a separate copy of my current journal before replacing it.</label>
+<button type="button" id="recoSafetyExport" class="reco-restore-export">Download current journal before replacing</button>
+<div class="reco-import-preview" id="recoImportPreview" role="status"></div>
+<div class="backup-options"><button id="cancelImport">Cancel</button><button id="mergeImport">Merge</button><button class="primary" id="replaceImport">Replace</button></div>
+</div>
+</dialog>
+<dialog class="lightbox" id="lightbox" aria-label="Enlarged restaurant photograph"><button type="button" class="lightbox-close" id="lightboxClose" aria-label="Close enlarged photograph">×</button><img alt="Enlarged restaurant photograph" id="lightboxImg"/></dialog>
+<script src="./recolleat-v4-3.js" defer></script>
+<script src="./account-config.js" defer></script>
+<script src="./accounts.js" defer></script>
+<script src="./places-config.js" defer></script>
+<script src="./places.js" defer></script>
+<div class="mobile-more-backdrop" id="mobileMoreBackdrop" aria-hidden="true"></div><section aria-hidden="true" aria-label="More Recolleat sections" aria-modal="true" class="mobile-more-sheet" id="mobileMoreSheet" role="dialog" inert><div class="mobile-more-handle"></div><div class="mobile-more-top"><div><span class="mobile-eyebrow">DISCOVER MORE</span><h2 id="v42MoreHeading">Explore Recolleat</h2></div><button aria-label="Close menu" id="mobileMoreClose" type="button">×</button></div><div class="mobile-more-links reco-31-more-grid" aria-label="Explore your journal">
+<button class="reco-31-profile" data-more-view="profile" type="button"><span class="reco-31-profile-avatar" id="moreProfileAvatar" aria-hidden="true">R</span><span class="more-label">My Profile</span></button>
+<button class="reco-31-help" data-more-view="help" type="button"><span class="more-icon" aria-hidden="true">?</span><span class="more-label">Help &amp; FAQs</span></button>
+<button class="reco-31-settings" data-more-view="settings" type="button"><span class="more-icon" aria-hidden="true">⚙</span><span class="more-label">Settings</span></button>
+<button class="reco-31-cards" data-more-view="cards" type="button" aria-label="Restaurant cards"><span class="more-icon" aria-hidden="true">▧</span><span class="more-label">Restaurant Cards</span></button>
+<button class="reco-31-cuisine" data-more-view="cuisines" type="button" aria-label="Cuisine podium"><span class="more-icon" aria-hidden="true">♛</span><span class="more-label">Cuisine Podium</span></button>
+<button class="reco-31-lists" data-more-view="lists" type="button" aria-label="Saved lists"><span class="more-icon" aria-hidden="true">☷</span><span class="more-label">Saved Lists</span></button>
+<button class="reco-31-privacy" data-more-view="privacy" type="button" aria-label="Privacy and safety"><span class="more-icon" aria-hidden="true">♧</span><span class="more-label">Privacy &amp; Safety</span></button>
+<button class="reco-31-dishes" data-more-view="dishes" type="button"><span class="more-icon" aria-hidden="true">★</span><span class="more-label">Dishes</span></button>
+</div><div class="mobile-theme-panel" id="mobileThemeMount"></div><div class="mobile-backup-panel"><div class="reco-backup-intro"><b>Protect your journal</b><small>Stored on this device · Export a copy regularly</small></div><p id="v42BackupStatus" class="v42-backup-status" role="status">No export recorded on this device.</p><div class="reco-update-ready" id="recoUpdateReady" role="status" hidden><span>A newer Recolleat version is ready.</span><button id="recoUpdateNow" type="button">Update safely</button></div><p id="recoConnectionState" class="reco-connection-state" role="status"></p><div class="reco-backup-primary"><button id="mobileExport" type="button">↓ Export backup</button><button id="mobileImport" type="button">↑ Import backup</button></div><details class="reco-backup-extra"><summary>More backup &amp; storage tools</summary><div class="mobile-backup-actions"><button id="v42VerifyBackup" type="button">Verify a backup</button><button id="v44ProtectStorage" type="button">Protect storage</button><button id="recoRecoveryOpen" type="button">Recovery point</button><button id="recoOptimiseMedia" type="button">Optimise photos</button><input type="file" id="v42VerifyFile" accept=".json,application/json" hidden></div></details></div></section><div id="appToast" class="app-toast" role="status" aria-live="polite"></div>
+</body>
+</html>
