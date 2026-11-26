@@ -69,3 +69,11 @@ Renumbered account foundation to 4.3. Optional Google Maps restaurant matching i
 
 ## Build 4.47
 Replaces the previous paid-field Google browser search with optional ID-only server search. Disabled until configured; manual logging unaffected. Candidate verification opens Google Maps externally. No schema changes, no friends feed, no advertising or SMTP activation. See backend/GOOGLE_SETUP.md and backend/CHECKLIST.md. Existing authentication options retained. Live integration not tested.
+
+## Build 4.48 — 26 November 2026
+- London config; private sharing development release; SQL migration required.
+- New logo for header, splash, favicon, home-screen icons; same storage schema and local data keys.
+- Profile is one of five mobile tabs; Places and Dishes are equal adjacent tiles.
+- Friends in More, invite links, accepted-friends feed, shared entry preview/visibility controls, friend profiles, reporting and moderation. No photo upload.
+- London fresh account configuration. Run backend/4_48_sharing.sql first; see backend/4_48_LONDON_SETUP.md.
+- Syntax and isolated mocked UI checks only; live PostgreSQL and Supabase, real-device, service-worker and access-control tests outstanding.
