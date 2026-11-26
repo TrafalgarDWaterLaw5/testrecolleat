@@ -1,3 +1,7 @@
+# Build 4.49
+
+First-run illustrated onboarding (replay in My Profile); three profile sections; consistent system sans typography; swipe adjacent tabs; fixed signature gallery visibility and duplicate calendar log action; legacy backup weight preferences normalised safely with warning if invalid. Optional friends-only Palate Code requires 4.49 migration; never uploaded automatically. 
+
 # Build 4.45
 
 - Dedicated Friends, Account Settings, Privacy & Safety and administrator-only Founder Dashboard views.
