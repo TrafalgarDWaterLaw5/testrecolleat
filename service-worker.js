@@ -1,6 +1,6 @@
-/* Recolleat Build 4.45 — offline-first, versioned, update-safe. */
-const CACHE='recolleat-mobile-v4-45-connected-1';
-const CRITICAL=['./','./index.html','./recolleat-v4-45.css','./recolleat-v4-45.js','./account-config.js','./accounts.js','./places-config.js','./places.js','./manifest.webmanifest','./manifest.webmanifest?v=4.45','./privacy.html','./terms.html','./icon-192.png','./icon-512.png','./icon-192.png?v=3.3','./icon-512.png?v=3.3'];
+/* Recolleat Build 4.47 — offline-first, versioned, update-safe. */
+const CACHE='recolleat-mobile-v4-47-connected-1';
+const CRITICAL=['./','./index.html','./recolleat-v4-47.css','./recolleat-v4-47.js','./account-config.js','./accounts.js','./places-config.js','./places.js','./manifest.webmanifest','./manifest.webmanifest?v=4.47','./privacy.html','./terms.html','./icon-192.png','./icon-512.png','./icon-192.png?v=3.3','./icon-512.png?v=3.3'];
 const OPTIONAL=['./icon-maskable-512.png','./icon-maskable-512.png?v=3.3','./apple-touch-icon.png','./install-check.html','./recolleat-release.txt'];
 self.addEventListener('install',event=>event.waitUntil((async()=>{
  const cache=await caches.open(CACHE);
@@ -17,6 +17,7 @@ self.addEventListener('activate',event=>event.waitUntil((async()=>{
 self.addEventListener('fetch',event=>{
  const req=event.request;if(req.method!=='GET')return;
  const u=new URL(req.url);if(u.origin!==self.location.origin)return;
+ if(u.searchParams.has('code')||u.searchParams.has('error')){event.respondWith(fetch(req,{cache:'no-store'}));return;}
  // Files used to create the app are fetched fresh when online. A versioned
  // cached fallback keeps the installed app available when offline.
  const appAsset=req.mode==='navigate'||/\.(?:html|js|css|webmanifest|txt)$/.test(u.pathname);

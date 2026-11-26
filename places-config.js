@@ -1,2 +1,2 @@
-// Browser key only: restrict to your HTTPS website referrers and Maps JavaScript API / Places API (New).
-window.RECOLLEAT_PLACES_CONFIG=Object.freeze({browserKey:''});
+// Enable only after deploying the Worker endpoint and configuring its secret and quotas.
+window.RECOLLEAT_PLACES_CONFIG=Object.freeze({enabled:false});

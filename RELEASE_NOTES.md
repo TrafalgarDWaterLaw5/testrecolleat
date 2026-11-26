@@ -61,3 +61,11 @@ Export a JSON backup before replacing files. Extract the ZIP, upload all content
 
 ## Connected branch 4.3
 Renumbered account foundation to 4.3. Optional Google Maps restaurant matching in full editor, storing place IDs locally only. No automatic journal sync. Configure both providers independently; live integration untested.
+
+## Build 4.46 — social authentication
+- Google and Apple OAuth via Supabase, using PKCE with a short-lived per-tab verifier; existing email/password and optional persistent sign-in retained.
+- No database changes. Provider setup required; no live OAuth test yet. No restaurant data is shared or uploaded.
+- See backend/OAUTH_SETUP.md. Apple web authentication requires paid developer membership and periodic secret renewal. Verify provider branding, account linking and privacy notices before beta.
+
+## Build 4.47
+Replaces the previous paid-field Google browser search with optional ID-only server search. Disabled until configured; manual logging unaffected. Candidate verification opens Google Maps externally. No schema changes, no friends feed, no advertising or SMTP activation. See backend/GOOGLE_SETUP.md and backend/CHECKLIST.md. Existing authentication options retained. Live integration not tested.
