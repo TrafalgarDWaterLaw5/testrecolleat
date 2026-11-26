@@ -81,3 +81,12 @@ Replaces the previous paid-field Google browser search with optional ID-only ser
 - Friends in More, invite links, accepted-friends feed, shared entry preview/visibility controls, friend profiles, reporting and moderation. No photo upload.
 - London fresh account configuration. Run backend/4_48_sharing.sql first; see backend/4_48_LONDON_SETUP.md.
 - Syntax and isolated mocked UI checks only; live PostgreSQL and Supabase, real-device, service-worker and access-control tests outstanding.
+
+
+## Build 4.50 — local journal and profile refresh
+- Original SVG profile banner patterns: Banana Club, Electric Citrus (yellow kiwis), Strawberry Fields, Golden Orchard. Unlocks 10/20/30/40; selection stays on device.
+- Backup warning and status, last restaurant deletion undo (current page session only), independent Places results, undated records excluded from most-recent sort, seasonal January recap, removed permanent yearly finance and Log Again panels, removed stamp chips, larger local profile edit, logo returns Home.
+- Visit mean mode, manual score preserved, explicit branch creation, group mean across branches, searchable ranked/unranked list selection with desktop drag and mobile arrow controls, local wishlist. Save & Review opens detailed editor after saving a single visit.
+- Legal drafts updated; no new paid service, no cloud journal.
+- Connected: Home friend feed, list snapshots, likes, friend-view preview, selected raw food score comparisons and separate official publishing role. Requires 4_50_social.sql after 4_49_palate.sql. Google Places still disabled until configured. No photo sharing or public ordinary users.
+- Checks: JS syntax and static references; isolated browser rendering and core synthetic tests with mocked persistence. Full hosted browser navigation blocked, no live SQL execution or device acceptance testing. Keep backups and do not release publicly until risk register and legal prerequisites are completed.
