@@ -18,7 +18,7 @@ button,a.action{border:0;background:#0b5b37;color:#fff;padding:12px 16px;border-
 <p>If a check fails, the website files or deployment need repair. If every check passes but Android Chrome still reports <em>“This app can't be installed”</em>, the failure may be in Chrome's Android app-installation service, which a website cannot control.</p>
 <p>Do <b>not</b> clear Chrome's site data or uninstall an existing Recolleat app. That can remove your locally stored journal. Keep a JSON backup before changing browser settings.</p>
 <p>If installation fails, try another established installable web app in Chrome. If that also fails, the phone or Chrome installation service is a more likely cause.</p></div>
-<p><small>Build 4.53. All checks are performed in this browser. This page does not transmit a report to any server.</small></p>
+<p><small>Build 4.54. All checks are performed in this browser. This page does not transmit a report to any server.</small></p>
 </main><script>
 (function(){'use strict';
  const rows=[];const results=document.getElementById('results'),summary=document.getElementById('summary');
@@ -52,7 +52,7 @@ button,a.action{border:0;background:#0b5b37;color:#fff;padding:12px 16px;border-
  const fails=rows.filter(x=>x.status==='FAIL').length;summary.textContent=fails?fails+' installation setup check(s) failed.':'No failures detected in the web app files. Android installation still needs a device-level test.';
  }
  document.getElementById('run').addEventListener('click',check);
- document.getElementById('copy').addEventListener('click',async()=>{const text='Recolleat installation check (Build 4.53)\n'+rows.map(r=>r.status+' | '+r.label+': '+r.detail).join('\n');try{await navigator.clipboard.writeText(text);alert('Report copied.')}catch{prompt('Copy report:',text)}});
+ document.getElementById('copy').addEventListener('click',async()=>{const text='Recolleat installation check (Build 4.54)\n'+rows.map(r=>r.status+' | '+r.label+': '+r.detail).join('\n');try{await navigator.clipboard.writeText(text);alert('Report copied.')}catch{prompt('Copy report:',text)}});
  check();
 })();
 </script></body></html>
