@@ -1,3 +1,24 @@
+# Recolleat Beta — Build 4.52
+
+Internal test build; upgrade on the existing site origin. Export your journal before updating. Storage identifiers and existing records are retained.
+
+- Table, Collection, My Profile, Calendar, More; universal journal search via swipe up or Search button.
+- Cleaner More, quick log, profiles, cuisine rankings, list rows and legal footer.
+- Save Meal / Receipt / Deep Dive at top; food score field for detailed visit edits.
+- Collapsible personal lists, searchable picker, insertion position and hold-to-reorder grip (keyboard position fallback).
+- The Bucket List reuses previously saved wishlist data; successful matching meal log removes the saved place.
+- Photo fallback: dish, restaurant, compact placeholder.
+- Home backup panel and Calendar standalone spending panel hidden; exports remain available.
+- Connected: local favourite list snapshots, distinct personal/other list tabs, friend profile and explicitly shared banner, locally matched common restaurants, separate official and founder pages.
+- SQL migration 4.52 is required after 4.51; fixes ambiguous sharing target references, removes official reactions, separates official visibility, adds protected admin lookup/hiding/audit, supports optional built-in banner.
+- Permanent account deletion through the dashboard is deliberately not enabled; operator procedure and safety assessment required.
+- Actual profile photo upload, scheduled expiry cleanup, Google billing/Places, complete multi-account permissions and live migration tests remain outstanding.
+- Downloaded favourite copies cannot be remotely revoked, and are not included in ordinary journal exports.
+
+Testing: source syntax, archive and isolated browser interactions with simulated storage. No live Supabase or production service worker verification.
+
+## Prior release notes
+
 # Recolleat Beta — Build 4.51 (27 November 2026)
 
 Internal testing only. Export and verify a backup before deployment. Keep the existing website origin and database identifiers.
