@@ -1,3 +1,26 @@
+# Recolleat Beta — Build 4.51 (27 November 2026)
+
+Internal testing only. Export and verify a backup before deployment. Keep the existing website origin and database identifiers.
+
+- Profile opens at Palate Code; editing is separate. The connected account panel is in Settings, with separate founder and official publishing routes.
+- Legal footer on main pages. Calendar no longer shows 12-month spending trend.
+- Table reset clears collection search/filter/sort only. Missing values sort last.
+- Daily private flashbacks unlock one per ten distinct restaurant/dish combinations rated at least 8/10, maximum three. Selection rotates daily through a deterministically shuffled pool.
+- Culinary Stamps shows total completed levels and the three closest next levels. Existing thresholds preserved.
+- Similar saved restaurant suggestions, normalized local searches and clearer branch passport links. No fuzzy automatic merge.
+- Connected only: 7-day personal feed visibility, persistent authorised reviews and lists, expired reaction restrictions, locally ranked feed or Latest, friend profile list filter. Official announcements persist until removed.
+- Privacy and terms amended for beta and current data flows. Operator identity, retention schedules, provider contracts and applicable assessments remain release blockers.
+
+Connected: apply backend/4_51_feed.sql after 4.50 before testing. No new tables. Existing roles and shares stay intact. Old personal feed items remain available to authorised friends on profiles. Expired personal reactions are removed in the migration and subsequently on reaction activity by their owner; no scheduled purge configured.
+
+Deferred: Google billing, enhanced external search and global cap, bulk duplicate merge and international location redesign, photo sharing and complete design overhaul. Google remains disabled.
+
+Checks: JavaScript syntax and static assets; isolated Chromium tests use simulated local storage. Normal browser navigation blocked in this environment, live database and multi-account verification required.
+
+---
+
+## Previous release notes
+
 # Build 4.49
 
 First-run illustrated onboarding (replay in My Profile); three profile sections; consistent system sans typography; swipe adjacent tabs; fixed signature gallery visibility and duplicate calendar log action; legacy backup weight preferences normalised safely with warning if invalid. Optional friends-only Palate Code requires 4.49 migration; never uploaded automatically. 
