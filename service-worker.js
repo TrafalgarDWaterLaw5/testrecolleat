@@ -1,7 +1,7 @@
-/* Recolleat Build 4.54 — offline-first, versioned, update-safe. */
-const CACHE='recolleat-mobile-v4-54-connected-1';
-const CRITICAL=['./','./index.html','./recolleat-v4-54.css','./recolleat-v4-54.js','./account-config.js','./accounts-v4-54.js','./places-config.js','./places.js','./manifest.webmanifest','./manifest.webmanifest?v=4.54','./privacy.html','./terms.html','./icon-192.png','./icon-512.png','./icon-192.png?v=4.54','./icon-512.png?v=4.54'];
-const OPTIONAL=["./kingdom/elt.webp","./kingdom/elg.webp","./kingdom/ert.webp","./kingdom/erg.webp","./kingdom/slt.webp","./kingdom/slg.webp","./kingdom/srt.webp","./kingdom/srg.webp","./kingdom/squire.webp",'./banner-royal.svg','./banner-citrus.svg','./banner-crimson.svg','./banner-golden.svg','./icon-maskable-512.png','./icon-maskable-512.png?v=4.54','./apple-touch-icon.png','./install-check.html','./recolleat-release.txt'];
+/* Recolleat Build 4.56 — offline-first, versioned, update-safe. */
+const CACHE='recolleat-mobile-v4-56-connected-1';
+const CRITICAL=['./','./index.html','./recolleat-v4-56.css','./recolleat-v4-56.js','./account-config.js','./accounts-v4-56.js','./places-config.js','./places.js','./manifest.webmanifest','./manifest.webmanifest?v=4.56','./privacy.html','./terms.html','./icon-192.png','./icon-512.png','./icon-192.png?v=4.56','./icon-512.png?v=4.56'];
+const OPTIONAL=['./banner-pear.svg',"./kingdom/elt.webp","./kingdom/elg.webp","./kingdom/ert.webp","./kingdom/erg.webp","./kingdom/slt.webp","./kingdom/slg.webp","./kingdom/srt.webp","./kingdom/srg.webp","./kingdom/squire.webp",'./banner-royal.svg','./banner-citrus.svg','./banner-crimson.svg','./banner-golden.svg','./icon-maskable-512.png','./icon-maskable-512.png?v=4.56','./apple-touch-icon.png','./install-check.html','./recolleat-release.txt'];
 self.addEventListener('install',event=>event.waitUntil((async()=>{
  const cache=await caches.open(CACHE);
  // Do not install a partial app shell. Failure leaves the old worker active.
